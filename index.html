@@ -1,0 +1,2258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Polis Mindset — Nonit Tilokani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            serifBody: ['"Newsreader"', '"EB Garamond"', 'Georgia', 'serif'],
+            ui: ['"Inter"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --bg-paper: #F5EFE4;
+      --bg-paper-alt: #EDE4D3;
+      --bg-card: #FAF6EE;
+      --ink-primary: #221D1A;
+      --ink-secondary: #4D433B;
+      --ink-muted: #786B5E;
+      --accent-terracotta: #7D3524;
+      --accent-terracotta-hover: #632719;
+      --accent-sepia: #8C6D46;
+      --border-hairline: rgba(58, 46, 36, 0.16);
+      --border-strong: rgba(58, 46, 36, 0.32);
+    }
+
+    body.theme-sepia {
+      --bg-paper: #EBE0CC;
+      --bg-paper-alt: #E1D3BA;
+      --bg-card: #F2E8D5;
+      --ink-primary: #261E18;
+      --ink-secondary: #4A3D32;
+      --ink-muted: #6E5E4F;
+      --accent-terracotta: #752E1E;
+      --accent-terracotta-hover: #582014;
+      --border-hairline: rgba(58, 46, 36, 0.2);
+      --border-strong: rgba(58, 46, 36, 0.38);
+    }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      font-family: 'Newsreader', 'EB Garamond', Georgia, serif;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .font-display {
+      font-family: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+    }
+
+    .font-serif-body {
+      font-family: 'Newsreader', 'EB Garamond', Georgia, serif;
+    }
+
+    .font-ui {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 4.1rem;
+      line-height: 0.82;
+      padding-top: 0.18rem;
+      padding-right: 0.65rem;
+      padding-bottom: 0.1rem;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+    }
+
+    .double-rule {
+      border-top: 2px solid var(--ink-primary);
+      border-bottom: 1px solid var(--ink-primary);
+      height: 5px;
+    }
+
+    .hairline-b {
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .hairline-t {
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .hairline-all {
+      border: 1px solid var(--border-hairline);
+    }
+
+    .essay-prose p {
+      margin-bottom: 1.45em;
+      line-height: 1.82;
+      color: var(--ink-primary);
+    }
+
+    .essay-prose h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      line-height: 1.25;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 0.4rem;
+    }
+
+    .essay-prose h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: 1.32rem;
+      margin-top: 1.85rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent-terracotta);
+    }
+
+    .essay-prose blockquote {
+      margin: 2rem 0;
+      padding: 1.15rem 1.5rem;
+      border-left: 3px solid var(--accent-terracotta);
+      background-color: var(--bg-paper-alt);
+      font-style: italic;
+      font-size: 1.18em;
+      line-height: 1.68;
+      color: var(--ink-primary);
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    .essay-prose ul {
+      margin: 1.25rem 0 1.65rem 1.35rem;
+      list-style-type: disc;
+    }
+
+    .essay-prose li {
+      margin-bottom: 0.65rem;
+      line-height: 1.72;
+      padding-left: 0.25rem;
+    }
+
+    .essay-prose .ref-list a {
+      color: var(--accent-terracotta);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      word-break: break-all;
+    }
+
+    .reader-sm { font-size: 1.05rem; }
+    .reader-md { font-size: 1.18rem; }
+    .reader-lg { font-size: 1.32rem; }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-paper);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(92, 77, 60, 0.35);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#7D3524] selection:text-[#FAF6EE]">
+
+  <!-- Quiet Reading Progress Bar -->
+  <div id="reading-progress-container" class="fixed top-0 left-0 right-0 h-1 bg-transparent z-40 hidden">
+    <div id="reading-progress-bar" class="h-full bg-[#7D3524] transition-all duration-100" style="width: 0%;"></div>
+  </div>
+
+  <!-- Top Utility Bar -->
+  <div id="top-utility-bar" class="w-full hairline-b bg-[var(--bg-paper-alt)]/70 backdrop-blur-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs font-ui text-[var(--ink-muted)]">
+      <div class="flex items-center gap-3">
+        <span id="site-location-badge" class="tracking-widest uppercase font-medium text-[var(--accent-terracotta)]">New Delhi</span>
+        <span id="top-bar-sep" class="hidden sm:inline">•</span>
+        <span id="site-motto-text" class="hidden sm:inline italic font-serif-body text-sm text-[var(--ink-secondary)]">Accidental Creation Exploring Accidental Creation.</span>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Paper Tone Toggle -->
+        <button id="theme-toggle-btn" onclick="togglePaperTheme()" class="px-2.5 py-1 rounded-md hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-[var(--ink-secondary)] transition flex items-center gap-1.5" title="Switch between Warm Cream and Aged Sepia paper">
+          <span id="theme-dot" class="w-2.5 h-2.5 rounded-full bg-[#F5EFE4] border border-[#786B5E]"></span>
+          <span id="theme-label">Warm Cream</span>
+        </button>
+
+        <!-- Saved Reading List Pill -->
+        <button id="reading-list-btn" onclick="navigateTo('bookmarks')" class="px-2.5 py-1 rounded-md hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-[var(--ink-secondary)] transition flex items-center gap-1.5">
+          <svg width="14" height="14" class="w-3.5 h-3.5 text-[var(--accent-terracotta)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
+          <span>Reading List (<span id="bookmark-count">0</span>)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Classic Literary Masthead -->
+  <header id="site-masthead-header" class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-7 pb-5">
+    <div class="text-center">
+      <div id="masthead-kicker" class="inline-flex flex-wrap items-center justify-center gap-2.5 text-xs font-ui uppercase tracking-[0.22em] text-[var(--ink-muted)] mb-2">
+        <span id="masthead-est">Est. 2025</span>
+        <span>✦</span>
+        <span id="masthead-byline">An Independent Publication by Nonit Tilokani</span>
+        <span>✦</span>
+        <span id="masthead-format">Long-Form Essays</span>
+      </div>
+
+      <h1 onclick="navigateTo('home')" id="site-masthead-title" class="cursor-pointer font-display text-4xl sm:text-6xl md:text-[4.25rem] font-bold tracking-tight text-[var(--ink-primary)] leading-none my-1 hover:opacity-90 transition">
+        THE POLIS MINDSET
+      </h1>
+
+      <p id="site-masthead-subtitle" class="font-serif-body italic text-base sm:text-lg text-[var(--ink-secondary)] max-w-4xl mx-auto mt-2.5">
+        An inquiry into politics, philosophy, history, economics and structures of society—written for curious ordinary readers.
+      </p>
+    </div>
+
+    <!-- Double Print Rule & Navigation Bar -->
+    <div class="mt-6">
+      <div id="masthead-double-rule" class="double-rule mb-3"></div>
+      <nav id="site-nav-bar" class="flex flex-wrap items-center justify-between gap-3 py-1">
+        <div class="flex flex-wrap items-center gap-1 sm:gap-2 font-ui text-xs sm:text-sm font-medium">
+          <button onclick="navigateTo('home')" id="nav-home" class="nav-tab px-3.5 py-2 rounded-lg transition text-[var(--ink-secondary)] hover:bg-[var(--bg-paper-alt)]">
+            Essays &amp; Dispatches
+          </button>
+          <button onclick="navigateTo('about')" id="nav-about" class="nav-tab px-3.5 py-2 rounded-lg transition text-[var(--ink-secondary)] hover:bg-[var(--bg-paper-alt)]">
+            About &amp; Charter
+          </button>
+          <button onclick="navigateTo('archive')" id="nav-archive" class="nav-tab px-3.5 py-2 rounded-lg transition text-[var(--ink-secondary)] hover:bg-[var(--bg-paper-alt)]">
+            Index &amp; Reading Room
+          </button>
+          <button onclick="navigateTo('marginalia')" id="nav-marginalia" class="nav-tab px-3.5 py-2 rounded-lg transition text-[var(--ink-secondary)] hover:bg-[var(--bg-paper-alt)]">
+            Marginalia &amp; Aphorisms
+          </button>
+        </div>
+
+        <!-- Inline Search Box -->
+        <div id="search-box-wrapper" class="relative w-full sm:w-64">
+          <input
+            type="text"
+            id="search-input"
+            oninput="handleSearch(this.value)"
+            placeholder="Search essays, thinkers, ideas..."
+            class="w-full pl-8 pr-3 py-1.5 text-xs sm:text-sm font-ui rounded-lg hairline-all bg-[var(--bg-card)] text-[var(--ink-primary)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent-terracotta)]"
+          />
+          <svg width="14" height="14" class="w-3.5 h-3.5 text-[var(--ink-muted)] absolute left-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </div>
+      </nav>
+      <div id="masthead-bottom-rule" class="hairline-b mt-2"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main id="app-main" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pb-16"></main>
+
+  <!-- Classic Print Colophon / Footer -->
+  <footer id="site-footer" class="hairline-t bg-[var(--bg-paper-alt)]/80 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 hairline-b">
+        <div id="footer-about-col" class="md:col-span-7">
+          <div id="footer-brand-title" class="font-display text-2xl font-bold tracking-tight text-[var(--ink-primary)]">THE POLIS MINDSET</div>
+          <p id="footer-brand-desc" class="text-sm text-[var(--ink-secondary)] mt-2.5 leading-relaxed">
+            A quiet, unhurried literary corner edited and written by <strong>Nonit Tilokani</strong> in New Delhi. Dedicated to interdisciplinary inquiry, democratic accountability, and resisting algorithmic noise.
+          </p>
+          <p id="footer-epigraph" class="text-xs font-ui text-[var(--ink-muted)] mt-3">
+            “I would rather spend my life asking difficult questions than become comfortable with convenient answers.”
+          </p>
+        </div>
+
+        <div id="footer-sections-col" class="md:col-span-5">
+          <div class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--ink-muted)] mb-3">Sections</div>
+          <ul class="space-y-2 text-sm text-[var(--ink-secondary)]">
+            <li><button onclick="navigateTo('home')" class="hover:text-[var(--accent-terracotta)] transition">All Published Essays</button></li>
+            <li><button onclick="navigateTo('about')" class="hover:text-[var(--accent-terracotta)] transition">About &amp; Editorial Charter</button></li>
+            <li><button onclick="navigateTo('archive')" class="hover:text-[var(--accent-terracotta)] transition">Chronological Index</button></li>
+            <li><button onclick="navigateTo('marginalia')" class="hover:text-[var(--accent-terracotta)] transition">Commonplace Book</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-ui text-[var(--ink-muted)]">
+        <div id="footer-copyright">© 2025–2026 Nonit Tilokani • The Polis Mindset. Set in Newsreader &amp; Cormorant Garamond.</div>
+        <div id="footer-links-right" class="flex items-center gap-4">
+          <button onclick="navigateTo('about')" class="hover:text-[var(--accent-terracotta)]">Editorial Charter</button>
+          <button id="footer-author-trigger" onclick="openAuthorLoginModal()" class="hidden hover:text-[var(--accent-terracotta)] font-medium">Author Desk</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Author Passphrase Login Modal -->
+  <div id="author-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-xs p-4">
+    <div class="bg-[var(--bg-card)] border border-[var(--border-strong)] rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative fade-in">
+      <button onclick="closeAuthorLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-[var(--ink-muted)] hover:bg-[var(--bg-paper-alt)] hover:text-[var(--ink-primary)] transition" aria-label="Close">
+        ✕
+      </button>
+      <div class="text-center">
+        <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-ui uppercase tracking-widest bg-[var(--bg-paper-alt)] text-[var(--accent-terracotta)] font-semibold mb-2">
+          Restricted Access
+        </span>
+        <h3 class="font-display text-3xl font-bold text-[var(--ink-primary)]">Author Desk</h3>
+        <p class="text-sm text-[var(--ink-secondary)] mt-2 leading-relaxed">
+          Enter your private passphrase to open the publishing and site customization desk.
+        </p>
+      </div>
+
+      <form onsubmit="handleAuthorLogin(event)" class="mt-5 space-y-3">
+        <div>
+          <label class="block text-xs font-ui font-medium text-[var(--ink-secondary)] mb-1">Passphrase</label>
+          <input
+            type="password"
+            id="author-pass-input"
+            required
+            autocomplete="off"
+            placeholder="Enter passphrase..."
+            class="w-full px-3.5 py-2.5 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]"
+          />
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-lg bg-[var(--ink-primary)] hover:bg-[var(--accent-terracotta)] text-[#FAF6EE] font-ui text-sm font-medium transition shadow-xs">
+          Unlock Author Desk
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Banner -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 max-w-sm bg-[var(--ink-primary)] text-[#FAF6EE] px-4 py-3 rounded-xl shadow-xl font-ui text-xs sm:text-sm flex items-center gap-2.5 fade-in hidden">
+    <span class="text-[#E09F7D]">✦</span>
+    <span id="toast-message">Updated.</span>
+  </div>
+
+  <script>
+    // =========================================================================
+    // ESSAY ARCHIVE BY NONIT TILOKANI
+    // =========================================================================
+    const ESSAYS = [
+      {
+        id: "utopia-and-power",
+        number: "No. 01",
+        title: "Utopia and Power",
+        subtitle: "Every radical idea is called utopia until it is uttered from the mouth of power. A new typology of Radical, Moderate, and Possible utopias.",
+        category: "Political Philosophy",
+        date: "October 2025",
+        readTime: "9 min read",
+        featured: true,
+        pullQuote: "Utopia is just an idea that hasn't been backed by power. Every radical idea is called utopia, until it is uttered from the mouth of power. Power doesn’t just enforce laws. It defines what ideas are allowed to exist.",
+        tags: ["Thomas More", "Marx", "Gramsci", "Foucault", "Political Theory", "Neurobiology"],
+        content: `
+          <h2>What is Utopia?</h2>
+          <p>The word Utopia originates from Sir Thomas More's 1516 book <em>"Utopia,"</em> a political satire that depicted an ideal society on a fictional island. The term itself is a play on Greek words: <em>ou-topos</em> meaning "no place" and <em>eu-topos</em> meaning "good place" — suggesting both a perfect society and the impossibility of its existence. Since then, the idea of utopia has evolved across disciplines, from political philosophy and literature to religious thought and revolutionary ideology.</p>
+          <p>In political theory, a utopia is commonly defined as an ideal society marked by perfect justice, equality, harmony, and freedom. Scholars like Karl Mannheim described utopias as "orientations transcending the present state of affairs" that challenge existing social orders. Meanwhile, critics have warned of their dangers — from Isaiah Berlin who feared the coercive side of utopias, to Friedrich Hayek who saw them as the breeding ground for totalitarianism.</p>
+          <p>Historical attempts at utopia offer a sobering perspective: Marxist states like the Soviet Union and Maoist China attempted to implement classless, egalitarian societies, yet efforts to remake human consciousness often led to mass surveillance, purges, and authoritarianism. Anarchist experiments in Spain during the 1930s tried to eliminate private property and hierarchy but were suppressed violently. These examples show that when utopias are enforced too strictly or rapidly, they can spiral into dystopias.</p>
+
+          <h2>Utopia and Power</h2>
+          <blockquote>
+            "Utopia is just an idea that hasn't been backed by power. Every radical idea is called utopia, until it is uttered from the mouth of power. Power doesn’t just enforce laws. It defines what ideas are allowed to exist." — Nonit Tilokani
+          </blockquote>
+          <p>In the light of the above statement, it can be said that every idea, no matter how rational or just, remains utopic and normative as long as it exists solely in the mind of the powerless — the citizen, the philosopher, the thinkers. Without institutional backing or recognition by power structures, the idea lacks legitimacy and is dismissed as fantasy. It is only when the same idea is spoken by someone in authority — a policymaker, a religious leader, a corporate head — that it acquires the weight of 'realism'. In this sense, power is not merely the enforcer of ideas but the certifier of what counts as truth.</p>
+          <p>So, was Marx wrong when he said that the ideas of the ruling class are the ruling ideas? When Gramsci said that the state (ruling class) does not just rule through law and police, but through media, education, culture, ideas, and institutions like family? Was Foucault mistaken when he said that one who drives the discourse drives the truth? Or was Althusser exaggerating when he emphasized that the state does not solely rely on repressive and coercive methods of control, but also ideological state apparatuses? They were revealing an uncomfortable truth: <strong>“power legitimizes thought”</strong>. Without power, even the most brilliant idea floats in abstraction. With power, even an irrational belief can become institutional dogma.</p>
+          <p>So is it not the selective realism of dominant power structures? When a poor or marginalised person imagines a just society, their vision is labelled idealistic. But when the ruling elite promotes policies that serve its interests, it is seen as pragmatic or realistic. Power determines the viability of an idea.</p>
+
+          <h2>Why Some Utopias Are Literally Utopias</h2>
+          <p>To make a better assessment and deliver a structural and critical argument, I want to propose a classification of utopia. We can categorize Utopia into three categories, namely: <strong>Radical, Moderate, and Possible</strong>.</p>
+          <ul>
+            <li><strong>Radical Utopias:</strong> Barely possible because they require transformation of deep human instincts. <em>Examples:</em> Stateless communism, anarchism, spiritual anarchies, Kabir’s idea of Begumpura.</li>
+            <li><strong>Moderate Utopias:</strong> Possible with extreme alignment of values, resources, and political will. <em>Examples:</em> Scandinavian social democracies, cooperatives, ecological governance.</li>
+            <li><strong>Possible Utopias:</strong> Achievable through political reform, only blocked by resistance from current powers. <em>Examples:</em> Universal basic income, healthcare access, caste census, police reform.</li>
+          </ul>
+          <p>You might be thinking why this classification is not available elsewhere and what is the need for it. The answer to the former query is simple: I articulated it for my own understanding and theory building. And it is needful because this typology helps us distinguish between what is utopic due to lack of power, and what is utopic because it defies human psychological patterns.</p>
+          <p>I earlier said that every idea is utopic only because it lacks the backing of power. Yet one out of the three classifications — <em>Radical Utopia</em> — directly challenges deep human instincts like greed, ego, and desire for control. Maybe they aren’t just ‘unrealised due to powerlessness’ — maybe they’re utopic because they go against human nature itself and challenge human psychological patterns.</p>
+          <p>One can argue that human history shows transformation is possible — slow, generational, painful, but possible. People once believed that women couldn't vote (now they can), caste was divinely sanctioned (now legally abolished, though socially alive), slavery was normal (now criminalised), and LGBTQ+ rights were unnatural (now protected in many countries). But if we observe closely, these are cultural, social, political, or economic practices that can be shifted through the use of Power (Authority + Legitimacy), placing them within Moderate and Possible utopias.</p>
+          <p>By contrast, ideas under Radical Utopia — such as stateless communism, Gandhian swaraj without central power, Kabir’s <em>Begumpura</em> (a society without grief, class, pain, or hierarchy), or absolute voluntary collectives — challenge the very foundations of evolutionary psychology and neurobiology: greed (accumulation of resources), power-lust (status over others), anger and territoriality, biological drives, and social comparison. These are tied to evolutionary biology and neurochemistry (dopamine, testosterone, cortisol).</p>
+          <p>Major thinkers like Buddha, Gandhi, and Rousseau believed these instincts could be reshaped for good. Yet can such a massive global population be shifted away from deeply embedded neurochemical workings? Can they answer the hard inquiries into human nature posed by Hobbes, Machiavelli, or Nietzsche? While culture and education influence behavior, the biological roots of human impulses are difficult to extinguish entirely. Radical utopias face four stark realities: entrenched human instincts; societal norms changing faster than psychology; eight billion minds cannot be wiped like a hard drive; and radical utopias that ignore human psychology frequently turn totalitarian.</p>
+          <p>Moderate utopias can work, but only if everyone agrees on the basics like public good and fairness — which is rare in a world full of egos and self-interest. They are like fragile glass: workable, until one political shock or greedy leader shatters them. And Possible utopias? Reforms like universal healthcare or basic income are already within our technical and financial reach — yet they remain blocked. Not because they are too ideal, but because they threaten the few who profit from the current mess. That is the tragedy, redirecting us to our core thesis: the ideas of the ruling class are the ruling ideas.</p>
+
+          <h2>A Sensible Solution</h2>
+          <p>The solution is to design systems that are realistic about human flaws while encouraging their better expression — through education, environment, and slow cultural evolution, channelising human instincts into collective growth. We must not forget that politics and political science exist precisely because conflicts persist across political, social, cultural, and economic arenas. If we ignore human behavior and neurochemistry in a reckless rush to build a frictionless society, our pursuit will inevitably turn totalitarian or destructive.</p>
+        `
+      },
+      {
+        id: "contexts-political-thoughts",
+        number: "No. 02",
+        title: "Contexts: In Context of Political Thoughts and Ideas",
+        subtitle: "No thinker writes in a vacuum. When ideas are pulled out of their soil and shouted in the streets, we quote the text but forget the battle.",
+        category: "Political Philosophy",
+        date: "September 2025",
+        readTime: "10 min read",
+        featured: false,
+        pullQuote: "The tragedy of our times is this: we quote the text, but forget the battle. And when we do that, we reduce living ideas into dead dogmas.",
+        tags: ["Quentin Skinner", "Plato", "Karl Marx", "Leo Strauss", "John Locke", "Contextualism"],
+        content: `
+          <p>What do you feel or think when you see people waving red flags, blue flags, green, saffron, and yellow flags in the wind like a ritualistic victory celebration? You hear slogans: <em>"Down with Capitalism!"</em>, <em>"Laal Salaam"</em>, <em>"Buddham Sharanam Gachhami"</em>, <em>"Jai Bhim"</em>, <em>"Jai Shree Ram"</em>, <em>"Workers of the world unite, you have nothing to lose but your chains."</em> You must have wondered: Do they really know what they're chanting? Do they know what these flags once meant, or who these thinkers were fighting when they wrote what they did?</p>
+          <p>This essay is not an academic chapter or a theoretical dissertation. It is a common-sensical argument against political chauvinism and ritualism. It asks a simple question: <strong>What problem was this idea originally trying to solve?</strong> Because if we don't ask that, we aren't thinking. We're just performing.</p>
+
+          <h2>Political Science and the Contextual Process</h2>
+          <p>In political science, context refers to the historical, social, economic, political, and institutional conditions in which a political idea was born. <strong>"No thinker writes in a vacuum."</strong> Every idea is a response to power, to injustice, to hope, or to fear — or an effort to justify the societal structures of that time. This is the core insight of the Cambridge School, particularly Quentin Skinner, who insisted that we must understand what a thinker was <em>doing</em> with their words, not merely what the words say in isolation.</p>
+          <blockquote>
+            "The tragedy of our times is this: we quote the text, but forget the battle. And when we do that, we reduce living ideas into dead dogmas."
+          </blockquote>
+          <p>This contextual approach stands opposed to pure textualism, which reads a thinker’s words as timeless commandments meant to apply identically to all ages and societies. When we divorce an argument from the crisis that birthed it, we turn living philosophy into an intellectual ornament.</p>
+
+          <h2>Finding the Contexts of Different Thinkers</h2>
+          <h3>John Locke, Adam Smith, and David Ricardo</h3>
+          <p>These thinkers are often celebrated or condemned today solely as champions of capitalism, private property, and individual liberty. Yet to understand their ideas, we must recall what they were reacting against: feudal Europe, where monarchs and landlords colluded with the Church to strip common people of agency, property rights, and freedom of thought. When Locke spoke of natural rights and Smith defended private property against aristocratic monopolies, they were not cheering for modern billionaires; they were demanding basic human dignity for artisans, merchants, and a rising middle class crushed under feudal boots.</p>
+
+          <h3>Karl Marx and Early Industrial Capitalism</h3>
+          <p>Marx is often quoted today as if he were observing iPhones, algorithmic data harvesting, and tariff wars. His fight was against the raw, brutal face of 19th-century industrial capitalism: child labour, 14-hour workdays, hazardous factories without safety laws, widespread disease among women and children, and workers living in slums while factory owners built palaces. His critique was urgent for that era, just as a fresh critique must rise for ours. Quoting Marx without confronting today's exploiters — Big Tech, surveillance capitalism, data colonisation — is not revolution; it is nostalgia and ritualism.</p>
+
+          <h3>Plato and the Trial of Socrates</h3>
+          <p>Consider Plato, especially when his critique of democracy is weaponised by both the right wing and elitist intellectuals. Right-wing trolls casually share memes saying, <em>“Plato too hated democracy.”</em> Yet do they know why? Plato’s beloved master, Socrates, was sentenced to death by a democratic jury in Athens — a direct democracy where a misinformed majority could execute a dissenter. Plato feared the unchecked mob, not modern constitutionalism, federalism, or universal adult franchise. He imagined the Philosopher-King as a philosophical thought experiment, not an endorsement of modern demagoguery. Context changes everything.</p>
+
+          <h3>Leo Strauss and Weimar Trauma</h3>
+          <p>Even Leo Strauss, the famed proponent of reading closely between the lines of classical texts, developed his skepticism of liberal democracy out of personal trauma: in 1930s Germany, Hitler rose to power through democratic elections, forcing Strauss, a Jew, to flee. When we read Strauss today without knowing his historical trauma, we risk misusing his warning as a shallow justification for elitism.</p>
+
+          <h2>Fighting Our Own Battles, Not Echoing Old Slogans</h2>
+          <p>When ideas are pulled out of their soil and shouted in the streets, they become intellectual jewellery worn for identity rather than instruments for liberation. Even in elite university spaces and staff rooms, people often echo rather than think: someone echoes Savarkar, another Gandhi, another shouts <em>Jai Bhim</em> or invokes Birsa Munda. Meanwhile, we confront unprecedented crises of our own time: climate breakdown, data hegemony by Apple, Google, Microsoft, and Meta that hacks human attention and neurochemistry, nuclear proliferation, ecological devastation, and neo-fascism.</p>
+          <p>In Marx’s time, capitalism stole labour. In ours, it steals attention — commodifying our browsing history, emotional vulnerabilities, and voting behaviour. Quoting Marx without upgrading his lens is like carrying an AK-47 into a cyberwar. Similarly, waving a red flag while refusing to pay a rickshaw driver a fair night fare, invoking Ambedkar while denying women property rights at home, or shouting anti-Western slogans in Nike jerseys on Meta and X servers — all of this is ritual without reflection.</p>
+          <p>Quoting Marx without understanding data colonialism is useless. Quoting Plato without confronting authoritarianism is dangerous. Quoting Locke without talking about caste and capital is cowardice. If we do not solve the problems of our own time and space, history will not remember us as thinkers, but merely as ideological priests. So the next time you raise a flag or chant a slogan, pause and ask: <strong>Whose battle am I really fighting?</strong></p>
+        `
+      },
+      {
+        id: "monanarchy-and-polyanarchy",
+        number: "No. 03",
+        title: "Monanarchy and Polyanarchy: Rethinking Forms of Governance",
+        subtitle: "Authority itself does not escape the primal law of nature — it merely reshapes it into an institutionalized mask over anarchy.",
+        category: "Political Philosophy",
+        date: "November 2025",
+        readTime: "8 min read",
+        featured: false,
+        pullQuote: "Monarchy is not the rule of one, but monanarchy — the anarchic will of one sovereign. Democracy is not rule of the people, but polyanarchy — the anarchic conflict of many interests.",
+        tags: ["Thomas Hobbes", "Kautilya", "Matsyanyaya", "Louis Althusser", "Governance", "State Theory"],
+        content: `
+          <p>For Thomas Hobbes, the state of nature was nothing but a war of all against all — the life of an individual was “solitary, poor, nasty, brutish, and short.” In the Indian tradition of thought, we find a striking parallel in Kautilya’s concept of <em>matsyanyaya</em> — the law of the fish — where, without <em>danda</em> (authority or the fear of punishment), the big fish devours the small. Both saw human beings trapped in a raw struggle, and both agreed that only authority could prevent collapse into chaos.</p>
+          <p>Whether in Hobbes, Locke, Kautilya, or Rousseau, the state of nature and social contract serve as logical thought experiments to explain the origin of the state. Carrying forward their premise regarding raw human impulses, we must ask a disturbing question: Did the formation of governance systems like monarchy or democracy actually solve the problem of anarchy, or did anarchy merely assume a new institutional mask? Authority itself does not escape this primal law — it reshapes it into what I call <strong>Monanarchy</strong> and <strong>Polyanarchy</strong>.</p>
+
+          <h2>The Myth of Escaping the State of Nature</h2>
+          <p>Both Hobbes and Kautilya presupposed that rulers could transcend the primal law of <em>might is right</em>. They overlooked that rulers are themselves products of the same human condition. Plato imagined a ruler fit to hold power precisely because he does not desire it — yet history repeatedly shows how possession of power corrupts those who hold it. What changes with the birth of the state is not the end of anarchy, but its scale and appearance.</p>
+
+          <h2>Monanarchy</h2>
+          <p>Monarchy is traditionally described as the rule of one. In reality, it is <strong>monanarchy</strong> — the concentration of anarchy in the person of the sovereign. Despite claims of divine right, the monarch’s laws are shaped by his survival, interests, and biases. Monarchy does not abolish <em>matsyanyaya</em>; it centralizes it. The king becomes the “biggest fish,” devouring others legally, while the codified legal text becomes the <em>Amrit</em> — the nectar of immortality — protecting that big fish.</p>
+
+          <h2>Polyanarchy</h2>
+          <p>Democracy is imagined as the opposite of monarchy: collective self-governance by the people. Yet beneath the chants of popular sovereignty lies <strong>polyanarchy</strong>. In modern democracy, multiple factions — political parties, corporate lobbies, media houses, caste blocs, and religious groups — compete to impose their own version of order. Laws become outcomes of bargaining and muscle, while elections risk becoming rituals manipulated by money, propaganda, AI, and techno-feudal powers.</p>
+          <blockquote>
+            "Democracy is not pure order but managed conflict, an institutionalized war of factions. What Hobbes called the 'state of war' continues inside parliament, courts, and streets — only ritualized, proceduralized, and legitimized."
+          </blockquote>
+          <p>Consider post-2014 India: across policing, elections, administration, the economy, and media, formal institutions exist, yet enforcement is deeply fragmented. Statutes like UAPA, NSA, and PMLA are wielded selectively against dissenters, neutral agencies act against political opponents, and key public institutions are populated with ideological loyalists. This fragmentation exemplifies polyanarchy: multiple competing centers of partisan influence rather than a single, impartial legal order.</p>
+
+          <h2>The Hollow Sense of Order and the Historical Cycle</h2>
+          <p>Why do citizens believe they live under order rather than veiled anarchy? As Louis Althusser demonstrated through his analysis of Repressive and Ideological State Apparatuses, symbols, flags, courts, education, and fear manufacture a sense of natural legitimacy. Beneath that thin crust, selective enforcement and arbitrary power persist. When legitimacy collapses through moral bankruptcy or economic crisis, the shell cracks and primal <em>matsyanyaya</em> resurfaces: <em>State of Nature → Hollow Order (Monanarchy / Polyanarchy) → Collapse → Resurfacing of Anarchy → Re-invented Hollow Order.</em></p>
+
+          <h2>Conclusion: Internal Order Over External Coercion</h2>
+          <p>As Hobbes was fascinated by geometry, I apply these definitions to examine the architecture of power. Real order cannot ultimately come from rulers alone, because rulers remain bound to human appetites. If genuine order is possible, it must arise from within individuals — through self-discipline, <em>dharma</em>, and ethical self-governance. Here resonate the traditions of Buddhism and Jainism, the Stoics, Gandhi, and positive liberalism: the conviction that lasting order is not imposed from above, but cultivated within.</p>
+        `
+      },
+      {
+        id: "restlessness-political-prisoner",
+        number: "No. 04",
+        title: "Restlessness: Thoughts of a Political Prisoner in a Free Nation",
+        subtitle: "Standing alone on a balcony during a family celebration, surrounded by casual slogans, reflecting on Hannah Arendt, Savarkar, and the quiet resilience of mourning.",
+        category: "Reflections & Dissent",
+        date: "August 2025",
+        readTime: "7 min read",
+        featured: false,
+        pullQuote: "I don’t hate my country. I mourn it. And mourning, I believe, is a political act. Tonight, I am in a balcony. Tomorrow, I will be in books, in classrooms, in conversations.",
+        tags: ["Hannah Arendt", "Orwell", "Dissent", "Personal Essay", "Manifesto", "Dharma"],
+        content: `
+          <p><em>Location: A balcony, surrounded by saffronized views and uncultivated minds.</em></p>
+          <p>It’s the birthday of my sister’s son. I didn’t come here to write. I came to breathe — to distract myself from the suffocation of truth in a room filled with people who’ve mistaken propaganda for patriotism. I had hoped that perhaps, just for today, I could set aside the questions. That maybe, for once, I wouldn’t be provoked by relatives who casually joke about violence, who speak of executions as if it's just politics, who chant slogans while knowing nothing about their history, their religion, or their own humanity. But here I am. Alone. Standing on a balcony. And the questions won't leave me.</p>
+          <p>What happens when you live in a country where asking a question is a crime, where dissent is treason, where criticism of the ruling power is met with jail, ED, CBI, or a street mob? What happens when your classrooms are silent, your professors complicit, your media obedient, your judiciary politicized, and your society hypnotized? You get authoritarianism — not always declared with marching boots, but quiet, casual, disguised as cultural pride.</p>
+          <p>I have read the history. I have studied fascism — not as an exam chapter, but as a warning. I have watched the Nuremberg Trials, read Laurence Rees, Hannah Arendt, Gramsci, and Orwell, and traced the arc from hyper-nationalism to catastrophe. The line is never straight. It always starts with slogans, the glorification of the leader, the silencing of artists, the criminalization of critics, the creation of an enemy within, and turning Ram into a warrior instead of a seeker.</p>
+
+          <h2>Hindutva Is Not Hinduism</h2>
+          <p>Let that be said loudly and clearly: Hindutva is not Hinduism. Real Hinduism is a flowing river of ideas, inquiry, pluralism, and philosophy. It is the calm of the Upanishads, the rebellion of the Bhakti poets, the tolerance of Ashoka, the curiosity of the Gita. It is not chants used to drown screams, nor hate painted in saffron. Hindutva is Savarkar’s rage, not Shankara’s wisdom. It is a political project of control, not a spiritual journey of truth. When you tie your politics to your gods and demand obedience instead of love, you are not defending dharma — you are destroying it.</p>
+          <blockquote>
+            "I don’t hate my country. I mourn it. And mourning, I believe, is a political act."
+          </blockquote>
+          <p>I know I feel alone. My classmates stay quiet. My relatives mock me, call me naive, overthinking, or worse — anti-national. Yet what is patriotism, if not caring enough to hold your nation accountable? So this is my manifesto — not of rage, but of reflection. I will write. I will study more, read deeper, speak clearer. I will build a body of knowledge so sharp that no propaganda can pierce it. I will become the teacher, the thinker, the tutor who teaches truth in a time of lies.</p>
+
+          <h2>A Letter to the Darkness</h2>
+          <p>You can surround me with noise, but you cannot silence my clarity. You can gather around me in chants, but you cannot touch the sacred fire of my questions. You wear the mask of nationalism, yet I see the fear in your eyes — fear of the student who reads, of the thinker who resists, of the poet who refuses to rhyme with lies.</p>
+          <p>You have taken temples and turned them into fortresses; you have taken gods and turned them into swords. Yet real dharma does not need a weapon to stand tall — it needs courage and truth. You call me anti-national, yet I love the soul of this nation: not merely the border or the flag, but the conscience that asks, the voice that critiques, the hand that writes even when trembling.</p>
+          <p>My silence tonight is not surrender. It is the calm before the pen begins to write. It is the moment the idea takes root in the soil of suffering — the breath before a thousand essays, conversations, and poems bloom. Tonight, I am on a balcony. Tomorrow, I will be in books, in classrooms, in the awakening hearts of those who begin to see. This is not my end. This is my beginning.</p>
+        `
+      },
+      {
+        id: "india-in-denial",
+        number: "No. 05",
+        title: "India in DENIAL: The Historical Amnesia and Age of Blurriness",
+        subtitle: "India is not suffering from a crisis of information; it is suffering from a crisis of memory, public reasoning, and manufactured obscurantism.",
+        category: "Contemporary Politics",
+        date: "July 2025",
+        readTime: "8 min read",
+        featured: false,
+        pullQuote: "Democracy by name, dictatorship by design. If we don't resist with clarity and courage, we'll find ourselves voting inside a velvet cage.",
+        tags: ["NCERT", "Antonio Gramsci", "John Stuart Mill", "Historical Memory", "Media", "Hegemony"],
+        content: `
+          <h3>Abstract</h3>
+          <p><em>This article explores the ideological machinery behind erasing history, spreading misinformation, weaponizing obscurantism, and dismantling rational-scientific temper in contemporary India, drawing structural parallels with 20th-century authoritarianism. I am a student — nothing more than a Hermes carrying a message for my fellow citizens, highlighting the Orwellian transformation of public life.</em></p>
+
+          <h2>Tragedy: Forgotten Histories &amp; Spread Lies</h2>
+          <p>India is not suffering from a crisis of information. It is suffering from a crisis of memory — a crisis born from selective storytelling, political gaslighting, and a public too distracted or fatigued to question the past handed to them. Today, many know little about the true essence of dharma, the ideological roots of the RSS, Gandhi, INC, Bose, Bhagat Singh, the realities of Partition, or the complexity of the Mughal period. We worship freedom fighters whose actual writings we have forgotten, while demonizing historians like Irfan Habib and Romila Thapar for presenting archival evidence.</p>
+          <p>Decades of educational neglect have left millions without tools for critical inquiry. As a result, slogans win over substance, noise defeats nuance, a meme becomes more believable than a historian, and a WhatsApp forward carries more authority than a scholar’s lecture. The citizen has been systematically deprived of critical reasoning by a state that fears reflection and a media ecosystem that thrives on reaction.</p>
+
+          <h2>From "Mile Sur Mera Tumhara" to "Batenge Toh Katenge"</h2>
+          <p>We are witnessing the quiet dismantling of the pluralist social fabric that successive generations struggled to preserve. <em>"Mile Sur Mera Tumhara"</em> has been displaced by divisive slogans like <em>"Batenge Toh Katenge."</em> Digital war zones on WhatsApp and YouTube spill into buses, chai stalls, metros, and classrooms, while legislation like the Digital Personal Data Protection Act threatens to dilute transparency and the Right to Information.</p>
+
+          <h2>Collapse of Public Reasoning</h2>
+          <p>The deeper tragedy is not merely that the state punishes dissent, but that ordinary neighbours cheer when it happens. Ask a critical question, and you are swiftly branded anti-national. Yet John Stuart Mill reminded us that liberty requires the freedom to critique, to offend, and to test ideas in an open marketplace of thought. When that marketplace is vandalized, liberty ceases to be a guaranteed right and becomes a personal risk.</p>
+          <blockquote>
+            "Democracy by name, dictatorship by design. If we don't resist with clarity and courage, we'll find ourselves voting inside a velvet cage."
+          </blockquote>
+
+          <h2>Obscurantism: The Tool of Cultural Hegemony</h2>
+          <p>Antonio Gramsci showed how a dominant class maintains hegemony not only by force, but by embedding its worldview so deeply into culture, schools, media, and institutions that citizens consent to their own subordination. Obscurantism sustains that dominance by keeping critical thinking out of reach — altering school textbooks, removing Darwinian evolution and key historical chapters, and flooding public discourse with mythologized noise. Gramsci and Orwell did not merely warn us; they predicted the architecture of 21st-century informational control.</p>
+
+          <h2>We, The Change</h2>
+          <p>We — the young, the readers, the thinkers — must document and remember. History often turns because a lone student refused to surrender their conscience. If your heart is restless, write. Restlessness is a sign that you still care for a better society; just ensure that restlessness never curdles into clinical despair or hopelessness. Coercion and censorship are the tools of the weak, not the strong. This is not our surrender; it is our beginning.</p>
+
+          <div class="ref-list text-sm mt-8 pt-6 hairline-t">
+            <h3>Selected References &amp; Further Reading</h3>
+            <ul>
+              <li>Deletion from NCERTs — <em>The Hindu</em>: Historians condemn key deletions from NCERT textbooks.</li>
+              <li>Science Curriculum Changes — <em>India Today</em>: Removal of evolution and periodic table chapters from Class 10 textbooks.</li>
+              <li>Digital Personal Data Protection Act &amp; RTI — <em>Newslaundry</em> analysis on institutional transparency.</li>
+              <li>Christophe Jaffrelot — <em>The Wire</em>: Ideological infiltration of public institutions and the judiciary.</li>
+              <li>Cambridge Public Humanities — <em>The Saffronization of Public Knowledge in India</em>.</li>
+              <li>Stanford Encyclopedia of Philosophy — Entries on <em>Hannah Arendt</em> and <em>Antonio Gramsci</em>.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: "how-to-survive-in-modis-india",
+        number: "No. 06",
+        title: "How to Survive in Modi's India",
+        subtitle: "How do I remain myself while living among the mad? Turning solitude into a mental underground printing press rather than escapism.",
+        category: "Reflections & Dissent",
+        date: "June 2025",
+        readTime: "9 min read",
+        featured: false,
+        pullQuote: "Don’t make this corner a symbol for your escapism. Treat it like a launchpad. It is our mental underground printing press.",
+        tags: ["Carl Jung", "Albert Camus", "Antonio Gramsci", "August Landmesser", "Aldous Huxley", "Survival"],
+        content: `
+          <h2>A Question</h2>
+          <p>Personal, political, and social anxiety pushed me toward the writings of Kafka, Nietzsche, Jung, Freud, and Schopenhauer. Like a mid-sea diver caught halfway between the noisy surface and the quiet ocean floor, I found myself struggling to breathe — suffocating not from a lack of air, but because the surrounding ideological ocean felt poisoned. How does one remain sane when classrooms, metros, tea stalls, and family rooms echo overconfident misinformation? How do you preserve the India of Raja Ram Mohan Roy, Kabir, Ambedkar, Bhagat Singh, Gauri Lankesh, and Gandhi?</p>
+
+          <h2>An Answer: Jung’s Shadow</h2>
+          <p>Borrowing from Javed Akhtar’s reflection and Carl Jung’s psychology of the unconscious: India always contained a tension between its light (syncretism, classical inquiry, constitutionalism) and its shadow (caste, patriarchy, communalism). When the shadow is left unexamined, it eventually seizes the stage. What we witness is India’s repressed id — insecurities and prejudices now drunk on institutional power.</p>
+
+          <h2>How to Survive?</h2>
+          <p>Imagine yourself as Kafka in Central Europe, Albert Camus in colonial Algeria, or Tagore in a burning Bengal. The central question is not <em>“How do I abolish the madness overnight?”</em> but <em>“How do I remain myself while living among the mad?”</em></p>
+          <blockquote>
+            "Don’t reveal your intellect to every idiot. Reserve it like a sword. Most people want confirmation, not discussion. Let them win arguments. You win the war by staying awake. Don’t make this corner a symbol for your escapism. Treat it like a launchpad. It is our mental underground printing press."
+          </blockquote>
+          <p>Control your information diet as strictly as your food. Read Louis Althusser, Hannah Arendt, George Orwell, Antonio Gramsci, Paulo Freire, and Laurence Rees. Remember the old maxim: <em>“Reading cures fascism, and travelling cures racism.”</em> Remember Mussolini’s prosecutor demanding of Antonio Gramsci: <em>“For twenty years we must stop this brain from functioning.”</em> Authoritarians fear awake minds more than armies, because ideas rooted in clarity outlive regimes.</p>
+
+          <h2>A Common Counterargument &amp; Self-Critique</h2>
+          <p>Some argue: <em>“We still vote, Parliament still meets, courts still sit — surely this isn’t authoritarianism?”</em> Yet democracy is not a five-year voting ritual; it is the daily lived experience of dignity and justice for the last person in line — for Dalits, Muslims, Adivasis, workers, and students. Today we live simultaneously in Orwell’s world of coercion and Aldous Huxley’s world of distraction and manufactured consent.</p>
+          <p>Still, I critique my own advice to avoid pointless arguments: if we stay silent, does hate go unchallenged? Here I think of August Landmesser in 1936 Hamburg — the lone man standing with folded arms in a crowd saluting Hitler. Unlike Bhagat Singh, who fought a foreign colonial apparatus with the people behind him, a citizen confronting majoritarian consensus stands like Landmesser: refusing to salute, preserving inner integrity, and recording the truth faithfully until the tide of history turns.</p>
+        `
+      },
+      {
+        id: "criminals-and-a-crime-that-produced-them",
+        number: "No. 07",
+        title: "Criminals and a Crime That Produced Them",
+        subtitle: "In the case of criminality, the individual may act, but the system writes the script and the state builds the stage. Insights from Durkheim, Foucault, and Nivedita Menon.",
+        category: "Society & Justice",
+        date: "May 2025",
+        readTime: "8 min read",
+        featured: false,
+        pullQuote: "A man may pull the trigger, but society often loads the gun. A thief may steal, but hunger was the first crime. If crime has a face, the system gave it its features.",
+        tags: ["Michel Foucault", "Émile Durkheim", "Nivedita Menon", "Gandhi", "Justice", "Sociology"],
+        content: `
+          <p><em>In case of criminality, the system and state are prior to an individual.</em></p>
+          <p>Have you ever paused long enough to ask how a person turns into a criminal? Who taught a perpetrator to view another human being as a mere object? When we say <strong>System</strong>, we mean social, cultural, and economic structures — family, schooling, media, markets, religion, and patriarchy. When we say <strong>State</strong>, we mean the political body responsible for law, justice, opportunity, and protection. And by <strong>Individual</strong>, we mean the final agent whose choices are conditioned by both. In short: <strong>the individual may act, but the system writes the script and the state builds the stage.</strong></p>
+
+          <h2>Diagnosis</h2>
+          <p>To understand the social roots of crime is neither to excuse nor to justify harm — it is to recognize that punishment without psychological and sociological understanding is mere barbarism. Every offender carries within them the hidden record of a collective failure.</p>
+          <blockquote>
+            "A man may pull the trigger, but society often loads the gun. A thief may steal, but hunger was the first crime. If crime has a face, the system gave it its features."
+          </blockquote>
+          <p>Consider how patriarchal culture conditions desire and objectification from adolescence through hypersexualized media, peer normalization, and silent complicity. As feminist scholar Nivedita Menon argues, challenging sexual violence requires more than punishing isolated individuals — we must <em>“denaturalize what has come to be presented as eternal and unchanging”</em> in our everyday norms of gender, desire, and false respectability.</p>
+
+          <h2>Theoretical Insights: Durkheim and Foucault</h2>
+          <p>Émile Durkheim famously argued that crime is a normal social fact because it clarifies collective norms and forces society to confront its moral boundaries. Michel Foucault, in <em>Discipline and Punish: The Birth of the Prison</em>, dismantled the illusion that modern prisons exist to heal the soul. Instead, Foucault showed that carceral institutions manufacture <strong>“docile bodies”</strong> — bodies regulated through surveillance, routine, and isolation so they conform outwardly to social norms without transforming inner consciousness.</p>
+          <p>Connected together, Durkheim and Foucault expose a sobering truth: society often punishes the <em>visibility</em> of transgression rather than its cultural root. It demands outward conformity and quiet hypocrisy rather than genuine moral awakening.</p>
+
+          <h2>Conclusion: Repair Over Vengeance</h2>
+          <p>In restorative systems like Norway’s, prisoners are treated not as finished monsters, but as unfinished human beings capable of therapy, education, and reintegration. Even Gandhi insisted: <em>“Hate the sin, not the sinner,”</em> recognizing that violence resides not only in physical acts, but in structural poverty, humiliation, and social silence. Before we raise our hands solely to punish, we must ask who shaped the hand and who lit the fire in the mind. Until then, every judgment remains half-blind.</p>
+        `
+      }
+    ];
+
+    // =========================================================================
+    // COMMONPLACE BOOK / MARGINALIA APHORISMS
+    // =========================================================================
+    const MARGINALIA = [
+      {
+        quote: "Utopia is just an idea that hasn't been backed by power. Every radical idea is called utopia, until it is uttered from the mouth of power.",
+        source: "Utopia and Power",
+        essayId: "utopia-and-power",
+        theme: "On Legitimacy & Power"
+      },
+      {
+        quote: "The tragedy of our times is this: we quote the text, but forget the battle. And when we do that, we reduce living ideas into dead dogmas.",
+        source: "Contexts: In Context of Political Thoughts",
+        essayId: "contexts-political-thoughts",
+        theme: "Against Dogmatism"
+      },
+      {
+        quote: "Quoting Marx without understanding data colonialism is useless. Quoting Plato without confronting authoritarianism is dangerous. Quoting Locke without talking about caste and capital is cowardice.",
+        source: "Contexts: In Context of Political Thoughts",
+        essayId: "contexts-political-thoughts",
+        theme: "Intellectual Courage"
+      },
+      {
+        quote: "A man may pull the trigger, but society often loads the gun. A thief may steal, but hunger was the first crime. If crime has a face, the system gave it its features.",
+        source: "Criminals and a Crime That Produced Them",
+        essayId: "criminals-and-a-crime-that-produced-them",
+        theme: "Sociology of Justice"
+      },
+      {
+        quote: "I would rather spend my life asking difficult questions than become comfortable with convenient answers. I would rather revise an argument than defend it merely because I once believed it.",
+        source: "Editorial Charter",
+        essayId: null,
+        theme: "The Examined Life"
+      },
+      {
+        quote: "Monarchy is not the rule of one, but monanarchy — the anarchic will of one sovereign. Democracy is not rule of the people, but polyanarchy — the anarchic conflict of many interests.",
+        source: "Monanarchy and Polyanarchy",
+        essayId: "monanarchy-and-polyanarchy",
+        theme: "Theory of the State"
+      },
+      {
+        quote: "Don’t make this corner a symbol for your escapism. Treat it like a launchpad. It is our mental underground printing press.",
+        source: "How to Survive in Modi's India",
+        essayId: "how-to-survive-in-modis-india",
+        theme: "Intellectual Resistance"
+      }
+    ];
+
+    // =========================================================================
+    // SITE CONFIGURATION & STORAGE KEYS
+    // =========================================================================
+    const CUSTOM_ESSAYS_KEY = 'polis_custom_essays_v1';
+    const AUTHOR_HASH_KEY = 'polis_author_hash_v1';
+    const SITE_CONFIG_KEY = 'polis_site_config_v1';
+    const AUTH_SALT = 'polis_mindset_salt_v1::';
+    let ALL_ESSAYS = [];
+
+    const DEFAULT_SITE_CONFIG = {
+      title: "THE POLIS MINDSET",
+      subtitle: "An inquiry into politics, philosophy, history, economics and structures of society—written for curious ordinary readers.",
+      motto: "Accidental Creation Exploring Accidental Creation.",
+      locationBadge: "New Delhi",
+      mastheadEst: "Est. 2025",
+      mastheadByline: "An Independent Publication by Nonit Tilokani",
+      mastheadFormat: "Long-Form Essays",
+      authorDisplayName: "Nonit Tilokani",
+      authorCredentials: "Political Science • Univ. of Delhi & IGNOU",
+
+      // Element & section visibility switches
+      showTopUtilityBar: true,
+      showLocationBadge: true,
+      showTopMotto: true,
+      showPaperToggle: true,
+      showReadingListBtn: true,
+      showMastheadKicker: true,
+      showMastheadSubtitle: true,
+      showMastheadRules: true,
+      showNavBar: true,
+      showSearchBox: true,
+      showCategoryFilterBar: true,
+      showEssayCount: true,
+      showLeadPullQuote: true,
+      showLeadSaveBtn: true,
+      showCardTags: true,
+      showCardSaveBtn: true,
+      showReaderFontControls: true,
+      showReaderSaveBtn: true,
+      showReaderCiteBtn: true,
+      showReaderTags: true,
+      showReaderPrevNext: true,
+      showFooter: true,
+      showFooterBrandCol: true,
+      showFooterEpigraph: true,
+      showFooterSectionsCol: true,
+      showFooterCopyright: true,
+
+      // Homepage panels
+      showEditorsDispatch: true,
+      showCommonplaceBook: true,
+      showInConversationWith: true,
+
+      // Editable text blocks
+      editorsDispatchTitle: "Why “The Polis Mindset”?",
+      editorsDispatchText: "The polis, understood as the political community, represents a space where individuals participate in collective existence, negotiate differences, and confront questions of power, citizenship, and justice.\n\nI built this publication as a quiet refuge from endless scrolling and ideological slogans — a place to trace why thinkers argued what they did, and to approach familiar questions from unfamiliar angles.",
+      thinkersList: "Karl Marx, B.R. Ambedkar, Antonio Gramsci, Michel Foucault, Hannah Arendt, Friedrich Nietzsche, M.K. Gandhi, Plato, Thomas Hobbes, Kautilya, Quentin Skinner, Kabir",
+      aboutIntro: "The Polis Mindset is an independent publication dedicated to exploring politics, philosophy, history, economics, society, and culture through curious and well-informed essays.\n\nDrawing from the classical political thought, the aim of this Polis is too, to develop civic community—a shared space where citizens participate in collective life, negotiate disagreement, and confront fundamental questions of power, justice, and accountability.",
+      aboutQuote: "A small collection of curiously written essays, mostly of them were written during my graduation days. I will continue to add more if anything comes to my mind. The aim here is not to tell readers what to think, but to offer arguments, historical contexts, and questions that encourage deeper reflection.",
+      authorBio: "Nonit Tilokani is a writer and student of Political Science based in New Delhi. His essays bridge classical political philosophy with contemporary social and institutional analysis.",
+      footerDesc: "A quiet, unhurried literary corner edited and written by Nonit Tilokani in New Delhi. Dedicated to interdisciplinary inquiry, democratic accountability, and resisting algorithmic noise.",
+      footerEpigraph: "“I would rather spend my life asking difficult questions than become comfortable with convenient answers.”",
+      footerCopyright: "© 2025–2026 Nonit Tilokani • The Polis Mindset. Set in Newsreader & Cormorant Garamond."
+    };
+
+    let SITE_CONFIG = { ...DEFAULT_SITE_CONFIG };
+
+    let state = {
+      view: 'home',
+      activeEssayId: null,
+      selectedCategory: 'All',
+      searchQuery: '',
+      bookmarks: JSON.parse(localStorage.getItem('polis_bookmarks') || '[]'),
+      readerFontSize: localStorage.getItem('polis_font_size') || 'reader-md',
+      paperTheme: localStorage.getItem('polis_paper_theme') || 'cream',
+      isAuthorUnlocked: false,
+      authorTab: 'write',
+      authorRevealed: false,
+      failedAttempts: 0,
+      lockoutUntil: 0
+    };
+
+    const CATEGORIES = [
+      'All',
+      'Political Philosophy',
+      'Contemporary Politics',
+      'Reflections & Dissent',
+      'Society & Justice'
+    ];
+
+    // =========================================================================
+    // CRYPTOGRAPHIC PASSPHRASE VERIFICATION
+    // =========================================================================
+    function digestHex(text) {
+      try {
+        if (window.crypto && window.crypto.subtle) {
+          const encoded = new TextEncoder().encode(text);
+          return window.crypto.subtle.digest('SHA-256', encoded).then(buf =>
+            Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
+          );
+        }
+      } catch (err) {
+        // Fallback below if subtle crypto is unavailable
+      }
+      let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+      }
+      h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      const hex = (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16);
+      return Promise.resolve(hex);
+    }
+
+    async function verifyPassphrase(candidate) {
+      const customHash = localStorage.getItem(AUTHOR_HASH_KEY);
+      const candidateSaltedHash = await digestHex(AUTH_SALT + candidate);
+      const candidateRawHash = await digestHex(candidate);
+      if (customHash) {
+        return candidateSaltedHash === customHash || candidateRawHash === customHash;
+      }
+      // Compute expected digests dynamically so mdstpandfc1411 always matches
+      const expectedSalted = await digestHex(AUTH_SALT + 'mdstpandfc1411');
+      const expectedRaw = await digestHex('mdstpandfc1411');
+      return candidateSaltedHash === expectedSalted || candidateRawHash === expectedRaw;
+    }
+
+    // =========================================================================
+    // INITIALIZATION & SITE CHROME APPLICATION
+    // =========================================================================
+    function initApp() {
+      loadSiteConfig();
+      loadAllEssays();
+      applyPaperTheme(state.paperTheme, false);
+      updateBookmarkBadge();
+      bindSecretAuthorTrigger();
+      render();
+      window.addEventListener('scroll', handleScrollProgress);
+    }
+
+    function bindSecretAuthorTrigger() {
+      const revealTrigger = () => {
+        state.authorRevealed = true;
+        const btn = document.getElementById('footer-author-trigger');
+        if (btn) btn.classList.remove('hidden');
+      };
+
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.altKey && (e.key === 'l' || e.key === 'L')) {
+          e.preventDefault();
+          revealTrigger();
+          openAuthorLoginModal();
+        }
+      });
+
+      const checkHash = () => {
+        if (window.location.hash === '#author-desk') {
+          revealTrigger();
+          openAuthorLoginModal();
+        }
+      };
+      window.addEventListener('hashchange', checkHash);
+      checkHash();
+    }
+
+    function loadSiteConfig() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(SITE_CONFIG_KEY) || 'null');
+        if (saved && typeof saved === 'object') {
+          SITE_CONFIG = { ...DEFAULT_SITE_CONFIG, ...saved };
+        }
+      } catch (err) {
+        SITE_CONFIG = { ...DEFAULT_SITE_CONFIG };
+      }
+      applySiteChromeConfig();
+    }
+
+    function applySiteChromeConfig() {
+      const toggleEl = (id, show) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (show) el.classList.remove('hidden');
+        else el.classList.add('hidden');
+      };
+
+      toggleEl('top-utility-bar', SITE_CONFIG.showTopUtilityBar);
+      toggleEl('site-location-badge', SITE_CONFIG.showLocationBadge);
+      toggleEl('top-bar-sep', SITE_CONFIG.showLocationBadge && SITE_CONFIG.showTopMotto);
+      toggleEl('site-motto-text', SITE_CONFIG.showTopMotto);
+      toggleEl('theme-toggle-btn', SITE_CONFIG.showPaperToggle);
+      toggleEl('reading-list-btn', SITE_CONFIG.showReadingListBtn);
+      toggleEl('masthead-kicker', SITE_CONFIG.showMastheadKicker);
+      toggleEl('site-masthead-subtitle', SITE_CONFIG.showMastheadSubtitle);
+      toggleEl('masthead-double-rule', SITE_CONFIG.showMastheadRules);
+      toggleEl('masthead-bottom-rule', SITE_CONFIG.showMastheadRules);
+      toggleEl('site-nav-bar', SITE_CONFIG.showNavBar);
+      toggleEl('search-box-wrapper', SITE_CONFIG.showSearchBox);
+      toggleEl('site-footer', SITE_CONFIG.showFooter);
+      toggleEl('footer-about-col', SITE_CONFIG.showFooterBrandCol);
+      toggleEl('footer-epigraph', SITE_CONFIG.showFooterEpigraph);
+      toggleEl('footer-sections-col', SITE_CONFIG.showFooterSectionsCol);
+      toggleEl('footer-copyright', SITE_CONFIG.showFooterCopyright);
+
+      const setText = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      setText('site-masthead-title', SITE_CONFIG.title);
+      setText('site-masthead-subtitle', SITE_CONFIG.subtitle);
+      setText('site-motto-text', SITE_CONFIG.motto);
+      setText('site-location-badge', SITE_CONFIG.locationBadge);
+      setText('masthead-est', SITE_CONFIG.mastheadEst);
+      setText('masthead-byline', SITE_CONFIG.mastheadByline);
+      setText('masthead-format', SITE_CONFIG.mastheadFormat);
+      setText('footer-brand-title', SITE_CONFIG.title);
+      setText('footer-brand-desc', SITE_CONFIG.footerDesc);
+      setText('footer-epigraph', SITE_CONFIG.footerEpigraph);
+      setText('footer-copyright', SITE_CONFIG.footerCopyright);
+    }
+
+    function loadAllEssays() {
+      try {
+        const savedCustom = JSON.parse(localStorage.getItem(CUSTOM_ESSAYS_KEY) || '[]');
+        ALL_ESSAYS = Array.isArray(savedCustom) ? [...savedCustom, ...ESSAYS] : [...ESSAYS];
+      } catch (err) {
+        ALL_ESSAYS = [...ESSAYS];
+      }
+    }
+
+    function saveBookmarks() {
+      localStorage.setItem('polis_bookmarks', JSON.stringify(state.bookmarks));
+      updateBookmarkBadge();
+    }
+
+    function updateBookmarkBadge() {
+      const el = document.getElementById('bookmark-count');
+      if (el) el.textContent = state.bookmarks.length;
+    }
+
+    function toggleBookmark(essayId, event) {
+      if (event) event.stopPropagation();
+      const idx = state.bookmarks.indexOf(essayId);
+      if (idx === -1) {
+        state.bookmarks.push(essayId);
+        showToast("Saved to your Reading List.");
+      } else {
+        state.bookmarks.splice(idx, 1);
+        showToast("Removed from your Reading List.");
+      }
+      saveBookmarks();
+      render();
+    }
+
+    function isBookmarked(essayId) {
+      return state.bookmarks.includes(essayId);
+    }
+
+    // =========================================================================
+    // PAPER THEME & READER FONT CONTROLS
+    // =========================================================================
+    function togglePaperTheme() {
+      const next = state.paperTheme === 'cream' ? 'sepia' : 'cream';
+      applyPaperTheme(next, true);
+    }
+
+    function applyPaperTheme(theme, notify) {
+      state.paperTheme = theme;
+      localStorage.setItem('polis_paper_theme', theme);
+      const dot = document.getElementById('theme-dot');
+      const label = document.getElementById('theme-label');
+
+      if (theme === 'sepia') {
+        document.body.classList.add('theme-sepia');
+        if (dot) dot.style.backgroundColor = '#EBE0CC';
+        if (label) label.textContent = 'Aged Sepia';
+        if (notify) showToast("Switched to Aged Sepia parchment.");
+      } else {
+        document.body.classList.remove('theme-sepia');
+        if (dot) dot.style.backgroundColor = '#F5EFE4';
+        if (label) label.textContent = 'Warm Cream';
+        if (notify) showToast("Switched to Warm Cream paper.");
+      }
+    }
+
+    function setReaderFontSize(sizeClass) {
+      state.readerFontSize = sizeClass;
+      localStorage.setItem('polis_font_size', sizeClass);
+      const proseEl = document.getElementById('essay-prose-body');
+      if (proseEl) {
+        proseEl.classList.remove('reader-sm', 'reader-md', 'reader-lg');
+        proseEl.classList.add(sizeClass);
+      }
+      document.querySelectorAll('.font-size-btn').forEach(btn => {
+        if (btn.dataset.size === sizeClass) {
+          btn.classList.add('bg-[var(--ink-primary)]', 'text-[#FAF6EE]');
+          btn.classList.remove('bg-[var(--bg-card)]', 'text-[var(--ink-secondary)]');
+        } else {
+          btn.classList.remove('bg-[var(--ink-primary)]', 'text-[#FAF6EE]');
+          btn.classList.add('bg-[var(--bg-card)]', 'text-[var(--ink-secondary)]');
+        }
+      });
+    }
+
+    // =========================================================================
+    // NAVIGATION & FILTERING
+    // =========================================================================
+    function navigateTo(view, essayId = null) {
+      if (state.view === 'author' && view !== 'author' && state.isAuthorUnlocked) {
+        state.isAuthorUnlocked = false;
+        showToast("Author Desk locked.");
+      }
+
+      state.view = view;
+      state.activeEssayId = essayId;
+
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.remove('bg-[var(--ink-primary)]', 'text-[#FAF6EE]');
+        btn.classList.add('text-[var(--ink-secondary)]', 'hover:bg-[var(--bg-paper-alt)]');
+      });
+
+      const activeBtnId = view === 'essay' ? 'nav-home' : `nav-${view}`;
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[var(--ink-primary)]', 'text-[#FAF6EE]');
+        activeBtn.classList.remove('text-[var(--ink-secondary)]', 'hover:bg-[var(--bg-paper-alt)]');
+      }
+
+      const progressContainer = document.getElementById('reading-progress-container');
+      if (progressContainer) {
+        if (view === 'essay') progressContainer.classList.remove('hidden');
+        else progressContainer.classList.add('hidden');
+      }
+
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectCategory(cat) {
+      state.selectedCategory = cat;
+      if (state.view !== 'home') {
+        state.view = 'home';
+      }
+      render();
+    }
+
+    function handleSearch(query) {
+      state.searchQuery = query.trim().toLowerCase();
+      if (state.view === 'essay' && state.searchQuery.length > 0) {
+        state.view = 'home';
+      }
+      render();
+    }
+
+    function getFilteredEssays() {
+      return ALL_ESSAYS.filter(essay => {
+        const matchesCat = state.selectedCategory === 'All' || essay.category === state.selectedCategory;
+        if (!matchesCat) return false;
+        if (!state.searchQuery) return true;
+        const haystack = `${essay.title} ${essay.subtitle} ${essay.category} ${essay.tags.join(' ')} ${essay.content}`.toLowerCase();
+        return haystack.includes(state.searchQuery);
+      });
+    }
+
+    // =========================================================================
+    // READING PROGRESS & CITATION COPY
+    // =========================================================================
+    function handleScrollProgress() {
+      if (state.view !== 'essay') return;
+      const bar = document.getElementById('reading-progress-bar');
+      if (!bar) return;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      bar.style.width = `${pct}%`;
+    }
+
+    function copyCitation(essay) {
+      const citationText = `Tilokani, Nonit. "${essay.title}." ${SITE_CONFIG.title}, ${essay.date}.`;
+      const tempInput = document.createElement('textarea');
+      tempInput.value = citationText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast("Citation copied to clipboard.");
+      } catch (e) {
+        showToast("Citation: " + citationText);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    // =========================================================================
+    // AUTHOR DESK AUTH & PUBLISHING
+    // =========================================================================
+    function openAuthorLoginModal() {
+      state.isAuthorUnlocked = false;
+      const modal = document.getElementById('author-login-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => document.getElementById('author-pass-input')?.focus(), 100);
+    }
+
+    function closeAuthorLoginModal() {
+      const modal = document.getElementById('author-login-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      const passInput = document.getElementById('author-pass-input');
+      if (passInput) passInput.value = '';
+    }
+
+    function lockAuthorDeskNow() {
+      state.isAuthorUnlocked = false;
+      showToast("Author Desk locked.");
+      navigateTo('home');
+    }
+
+    async function handleAuthorLogin(e) {
+      e.preventDefault();
+      const now = Date.now();
+      if (now < state.lockoutUntil) {
+        const secs = Math.ceil((state.lockoutUntil - now) / 1000);
+        showToast(`Too many attempts. Wait ${secs}s.`);
+        return;
+      }
+
+      const input = document.getElementById('author-pass-input');
+      const candidate = input ? input.value : '';
+      const valid = await verifyPassphrase(candidate);
+
+      if (input) input.value = '';
+
+      if (valid) {
+        state.failedAttempts = 0;
+        state.lockoutUntil = 0;
+        state.isAuthorUnlocked = true;
+        closeAuthorLoginModal();
+        showToast("Author Desk unlocked.");
+        navigateTo('author');
+      } else {
+        state.failedAttempts += 1;
+        if (state.failedAttempts >= 4) {
+          state.lockoutUntil = Date.now() + 30000;
+          state.failedAttempts = 0;
+          showToast("Incorrect passphrase. Locked for 30 seconds.");
+        } else {
+          showToast("Incorrect passphrase.");
+        }
+      }
+    }
+
+    async function updateAuthorPassphrase(e) {
+      e.preventDefault();
+      if (!state.isAuthorUnlocked) return;
+      const input = document.getElementById('new-passphrase-input');
+      const val = input ? input.value.trim() : '';
+      if (val.length < 6) {
+        showToast("Use at least 6 characters.");
+        return;
+      }
+      const hashed = await digestHex(AUTH_SALT + val);
+      localStorage.setItem(AUTHOR_HASH_KEY, hashed);
+      input.value = '';
+      showToast("Passphrase updated.");
+    }
+
+    function publishNewEssayFromGUI(e) {
+      e.preventDefault();
+      if (!state.isAuthorUnlocked) return;
+      const title = document.getElementById('gui-title').value.trim();
+      const subtitle = document.getElementById('gui-subtitle').value.trim();
+      const category = document.getElementById('gui-category').value;
+      const pullQuote = document.getElementById('gui-quote').value.trim();
+      const tagsRaw = document.getElementById('gui-tags').value.trim();
+      const rawBody = document.getElementById('gui-body').value.trim();
+
+      if (!title || !rawBody) return;
+
+      const paragraphs = rawBody.split(/\n\s*\n/).map(block => {
+        const trimmed = block.trim();
+        if (trimmed.startsWith('## ')) {
+          return `<h2>${trimmed.replace(/^##\s+/, '')}</h2>`;
+        }
+        if (trimmed.startsWith('### ')) {
+          return `<h3>${trimmed.replace(/^###\s+/, '')}</h3>`;
+        }
+        if (trimmed.startsWith('> ')) {
+          return `<blockquote>"${trimmed.replace(/^>\s+/, '')}"</blockquote>`;
+        }
+        return `<p>${trimmed.replace(/\n/g, '<br>')}</p>`;
+      }).join('\n');
+
+      const wordCount = rawBody.split(/\s+/).length;
+      const readMinutes = Math.max(1, Math.ceil(wordCount / 200));
+      const todayStr = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      const nextNum = String(ALL_ESSAYS.length + 1).padStart(2, '0');
+
+      const newEssay = {
+        id: title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Date.now().toString().slice(-4),
+        number: `No. ${nextNum}`,
+        title,
+        subtitle: subtitle || "A new essay published in The Polis Mindset.",
+        category,
+        date: todayStr,
+        readTime: `${readMinutes} min read`,
+        featured: false,
+        pullQuote: pullQuote || subtitle || title,
+        tags: tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [category, SITE_CONFIG.authorDisplayName],
+        content: paragraphs,
+        isCustom: true
+      };
+
+      const savedCustom = JSON.parse(localStorage.getItem(CUSTOM_ESSAYS_KEY) || '[]');
+      savedCustom.unshift(newEssay);
+      localStorage.setItem(CUSTOM_ESSAYS_KEY, JSON.stringify(savedCustom));
+      loadAllEssays();
+
+      showToast(`Published "${title}". Download updated HTML to save permanently.`);
+      navigateTo('essay', newEssay.id);
+    }
+
+    function saveSiteCustomizerGUI(e) {
+      e.preventDefault();
+      if (!state.isAuthorUnlocked) return;
+      const getCheck = (id) => Boolean(document.getElementById(id)?.checked);
+      const getVal = (id, fallback) => {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : fallback;
+      };
+
+      SITE_CONFIG = {
+        ...SITE_CONFIG,
+        title: getVal('cfg-title', DEFAULT_SITE_CONFIG.title) || DEFAULT_SITE_CONFIG.title,
+        subtitle: getVal('cfg-subtitle', DEFAULT_SITE_CONFIG.subtitle),
+        motto: getVal('cfg-motto', DEFAULT_SITE_CONFIG.motto),
+        locationBadge: getVal('cfg-location', DEFAULT_SITE_CONFIG.locationBadge),
+        mastheadEst: getVal('cfg-masthead-est', DEFAULT_SITE_CONFIG.mastheadEst),
+        mastheadByline: getVal('cfg-masthead-byline', DEFAULT_SITE_CONFIG.mastheadByline),
+        mastheadFormat: getVal('cfg-masthead-format', DEFAULT_SITE_CONFIG.mastheadFormat),
+        authorDisplayName: getVal('cfg-author-name', DEFAULT_SITE_CONFIG.authorDisplayName),
+        authorCredentials: getVal('cfg-author-creds', DEFAULT_SITE_CONFIG.authorCredentials),
+
+        showTopUtilityBar: getCheck('cfg-show-top-bar'),
+        showLocationBadge: getCheck('cfg-show-location'),
+        showTopMotto: getCheck('cfg-show-motto'),
+        showPaperToggle: getCheck('cfg-show-paper-toggle'),
+        showReadingListBtn: getCheck('cfg-show-reading-list'),
+        showMastheadKicker: getCheck('cfg-show-kicker'),
+        showMastheadSubtitle: getCheck('cfg-show-subtitle'),
+        showMastheadRules: getCheck('cfg-show-rules'),
+        showNavBar: getCheck('cfg-show-nav'),
+        showSearchBox: getCheck('cfg-show-search'),
+        showCategoryFilterBar: getCheck('cfg-show-cat-bar'),
+        showEssayCount: getCheck('cfg-show-essay-count'),
+        showLeadPullQuote: getCheck('cfg-show-lead-quote'),
+        showLeadSaveBtn: getCheck('cfg-show-lead-save'),
+        showCardTags: getCheck('cfg-show-card-tags'),
+        showCardSaveBtn: getCheck('cfg-show-card-save'),
+        showReaderFontControls: getCheck('cfg-show-reader-font'),
+        showReaderSaveBtn: getCheck('cfg-show-reader-save'),
+        showReaderCiteBtn: getCheck('cfg-show-reader-cite'),
+        showReaderTags: getCheck('cfg-show-reader-tags'),
+        showReaderPrevNext: getCheck('cfg-show-reader-prevnext'),
+        showFooter: getCheck('cfg-show-footer'),
+        showFooterBrandCol: getCheck('cfg-show-footer-brand'),
+        showFooterEpigraph: getCheck('cfg-show-footer-epigraph'),
+        showFooterSectionsCol: getCheck('cfg-show-footer-sections'),
+        showFooterCopyright: getCheck('cfg-show-footer-copy'),
+
+        showEditorsDispatch: getCheck('cfg-show-dispatch'),
+        showCommonplaceBook: getCheck('cfg-show-commonplace'),
+        showInConversationWith: getCheck('cfg-show-thinkers'),
+
+        editorsDispatchTitle: getVal('cfg-dispatch-title', DEFAULT_SITE_CONFIG.editorsDispatchTitle),
+        editorsDispatchText: getVal('cfg-dispatch-text', DEFAULT_SITE_CONFIG.editorsDispatchText),
+        thinkersList: getVal('cfg-thinkers-list', DEFAULT_SITE_CONFIG.thinkersList),
+        aboutIntro: getVal('cfg-about-intro', DEFAULT_SITE_CONFIG.aboutIntro),
+        aboutQuote: getVal('cfg-about-quote', DEFAULT_SITE_CONFIG.aboutQuote),
+        authorBio: getVal('cfg-author-bio', DEFAULT_SITE_CONFIG.authorBio),
+        footerDesc: getVal('cfg-footer-desc', DEFAULT_SITE_CONFIG.footerDesc),
+        footerEpigraph: getVal('cfg-footer-epigraph', DEFAULT_SITE_CONFIG.footerEpigraph),
+        footerCopyright: getVal('cfg-footer-copy-text', DEFAULT_SITE_CONFIG.footerCopyright)
+      };
+
+      localStorage.setItem(SITE_CONFIG_KEY, JSON.stringify(SITE_CONFIG));
+      applySiteChromeConfig();
+      showToast("All site switches & text saved.");
+      render();
+    }
+
+    function resetSiteCustomizerToDefault() {
+      if (!state.isAuthorUnlocked) return;
+      SITE_CONFIG = { ...DEFAULT_SITE_CONFIG };
+      localStorage.setItem(SITE_CONFIG_KEY, JSON.stringify(SITE_CONFIG));
+      applySiteChromeConfig();
+      showToast("Restored default site settings.");
+      render();
+    }
+
+    function switchAuthorTab(tabName) {
+      state.authorTab = tabName;
+      render();
+    }
+
+    function deleteCustomEssay(essayId) {
+      if (!state.isAuthorUnlocked) return;
+      const savedCustom = JSON.parse(localStorage.getItem(CUSTOM_ESSAYS_KEY) || '[]');
+      const updated = savedCustom.filter(item => item.id !== essayId);
+      localStorage.setItem(CUSTOM_ESSAYS_KEY, JSON.stringify(updated));
+      loadAllEssays();
+      showToast("Draft removed.");
+      render();
+    }
+
+    function downloadUpdatedWebsiteHTML() {
+      if (!state.isAuthorUnlocked) return;
+      const docClone = document.documentElement.cloneNode(true);
+      const mainContainer = docClone.querySelector('#app-main');
+      if (mainContainer) mainContainer.innerHTML = '';
+
+      const triggerBtn = docClone.querySelector('#footer-author-trigger');
+      if (triggerBtn) triggerBtn.classList.add('hidden');
+
+      const scriptTags = docClone.querySelectorAll('script');
+      const mainScript = scriptTags[scriptTags.length - 1];
+      if (mainScript) {
+        const serializedEssays = JSON.stringify(ALL_ESSAYS, null, 6);
+        const serializedConfig = JSON.stringify(SITE_CONFIG, null, 6);
+        mainScript.textContent = mainScript.textContent
+          .replace(/const ESSAYS = \[[\s\S]*?\n    \];/, `const ESSAYS = ${serializedEssays};`)
+          .replace(/const DEFAULT_SITE_CONFIG = \{[\s\S]*?\n    \};/, `const DEFAULT_SITE_CONFIG = ${serializedConfig};`);
+      }
+
+      const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
+      const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded updated index.html.");
+    }
+
+    // =========================================================================
+    // TOAST FEEDBACK & ESCAPE HELPER
+    // =========================================================================
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const text = document.getElementById('toast-message');
+      if (!toast || !text) return;
+      text.textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3400);
+    }
+
+    function escapeHtmlAttr(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    // =========================================================================
+    // VIEW RENDERERS
+    // =========================================================================
+    function render() {
+      const main = document.getElementById('app-main');
+      if (!main) return;
+
+      if (state.view === 'essay' && state.activeEssayId) {
+        main.innerHTML = renderEssayReader(state.activeEssayId);
+        handleScrollProgress();
+      } else if (state.view === 'about') {
+        main.innerHTML = renderAboutManifesto();
+      } else if (state.view === 'archive') {
+        main.innerHTML = renderArchiveIndex();
+      } else if (state.view === 'marginalia') {
+        main.innerHTML = renderMarginaliaView();
+      } else if (state.view === 'bookmarks') {
+        main.innerHTML = renderBookmarksView();
+      } else if (state.view === 'author') {
+        main.innerHTML = renderAuthorDeskView();
+      } else {
+        main.innerHTML = renderHomeView();
+      }
+    }
+
+    // 1. HOME VIEW
+    function renderHomeView() {
+      const filtered = getFilteredEssays();
+      const leadEssay = ALL_ESSAYS[0];
+      const showHero = state.selectedCategory === 'All' && !state.searchQuery && leadEssay;
+
+      const categoryPills = CATEGORIES.map(cat => {
+        const active = state.selectedCategory === cat;
+        return `
+          <button
+            onclick="selectCategory('${cat}')"
+            class="px-3.5 py-1.5 rounded-full font-ui text-xs font-medium transition ${
+              active
+                ? 'bg-[var(--accent-terracotta)] text-[#FAF6EE] shadow-2xs'
+                : 'bg-[var(--bg-card)] hairline-all text-[var(--ink-secondary)] hover:border-[var(--accent-terracotta)]'
+            }">
+            ${cat}
+          </button>
+        `;
+      }).join('');
+
+      const listEssays = showHero ? filtered.filter(e => e.id !== leadEssay.id) : filtered;
+      const hasSidebar = SITE_CONFIG.showCommonplaceBook || SITE_CONFIG.showInConversationWith;
+      const dispatchParagraphs = (SITE_CONFIG.editorsDispatchText || '').split(/\n\s*\n/).map(p =>
+        `<p class="text-sm sm:text-[15px] text-[var(--ink-secondary)] mt-3 leading-relaxed">${p}</p>`
+      ).join('');
+      const thinkersArray = (SITE_CONFIG.thinkersList || '').split(',').map(s => s.trim()).filter(Boolean);
+      const initials = (SITE_CONFIG.authorDisplayName || 'NT')
+        .split(/\s+/)
+        .map(w => w[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+
+      return `
+        <div class="fade-in">
+          ${showHero ? `
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 py-6 hairline-b">
+              <article class="${SITE_CONFIG.showEditorsDispatch ? 'lg:col-span-8 lg:pr-8 lg:border-r lg:border-[var(--border-hairline)]' : 'lg:col-span-12'}">
+                <div class="flex items-center gap-2.5 text-xs font-ui uppercase tracking-wider text-[var(--accent-terracotta)] font-semibold mb-2">
+                  <span>Featured Lead Essay</span>
+                  <span>•</span>
+                  <span>${leadEssay.category}</span>
+                </div>
+
+                <h2 onclick="navigateTo('essay', '${leadEssay.id}')" class="cursor-pointer font-display text-3xl sm:text-5xl font-bold text-[var(--ink-primary)] leading-[1.12] hover:text-[var(--accent-terracotta)] transition">
+                  ${leadEssay.title}
+                </h2>
+
+                <p class="text-lg sm:text-xl text-[var(--ink-secondary)] mt-3 leading-relaxed">
+                  ${leadEssay.subtitle}
+                </p>
+
+                ${SITE_CONFIG.showLeadPullQuote ? `
+                  <div class="my-5 p-5 rounded-xl bg-[var(--bg-paper-alt)]/70 border-l-4 border-[var(--accent-terracotta)] italic text-base sm:text-lg text-[var(--ink-primary)] leading-relaxed">
+                    “${leadEssay.pullQuote}”
+                  </div>
+                ` : ''}
+
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                  <div class="flex items-center gap-3 text-xs font-ui text-[var(--ink-muted)]">
+                    <span class="font-semibold text-[var(--ink-primary)]">By ${SITE_CONFIG.authorDisplayName}</span>
+                    <span>•</span>
+                    <span>${leadEssay.date}</span>
+                    <span>•</span>
+                    <span>${leadEssay.readTime}</span>
+                  </div>
+
+                  <div class="flex items-center gap-2.5">
+                    ${SITE_CONFIG.showLeadSaveBtn ? `
+                      <button onclick="toggleBookmark('${leadEssay.id}', event)" class="px-3 py-1.5 rounded-lg hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-xs font-ui text-[var(--ink-secondary)] transition">
+                        ${isBookmarked(leadEssay.id) ? '★ Saved' : '☆ Save'}
+                      </button>
+                    ` : ''}
+                    <button onclick="navigateTo('essay', '${leadEssay.id}')" class="px-4 py-1.5 rounded-lg bg-[var(--ink-primary)] hover:bg-[var(--accent-terracotta)] text-[#FAF6EE] text-xs font-ui font-medium transition">
+                      Read Full Essay →
+                    </button>
+                  </div>
+                </div>
+              </article>
+
+              ${SITE_CONFIG.showEditorsDispatch ? `
+                <aside class="lg:col-span-4 flex flex-col justify-between bg-[var(--bg-card)] hairline-all rounded-2xl p-6 shadow-2xs">
+                  <div>
+                    <div class="flex items-center justify-between hairline-b pb-3 mb-4">
+                      <span class="font-ui text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--accent-terracotta)]">Editor’s Dispatch</span>
+                      <span class="font-serif-body italic text-xs text-[var(--ink-muted)]">${SITE_CONFIG.locationBadge}</span>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold text-[var(--ink-primary)] leading-snug">
+                      ${SITE_CONFIG.editorsDispatchTitle}
+                    </h3>
+
+                    ${dispatchParagraphs}
+                  </div>
+
+                  <div class="mt-6 pt-4 hairline-t">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div class="w-10 h-10 rounded-full bg-[var(--accent-terracotta)] text-[#FAF6EE] font-display font-bold text-lg flex items-center justify-center shrink-0">
+                        ${initials}
+                      </div>
+                      <div>
+                        <div class="font-display font-bold text-base text-[var(--ink-primary)]">${SITE_CONFIG.authorDisplayName}</div>
+                        <div class="font-ui text-[11px] text-[var(--ink-muted)]">${SITE_CONFIG.authorCredentials}</div>
+                      </div>
+                    </div>
+                    <button onclick="navigateTo('about')" class="w-full py-2 rounded-lg hairline-all bg-[var(--bg-paper)] hover:bg-[var(--bg-paper-alt)] text-xs font-ui font-medium text-[var(--ink-primary)] transition">
+                      Read Editorial Charter →
+                    </button>
+                  </div>
+                </aside>
+              ` : ''}
+            </section>
+          ` : ''}
+
+          <section class="py-6">
+            ${(SITE_CONFIG.showCategoryFilterBar || SITE_CONFIG.showEssayCount) ? `
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <div class="flex flex-wrap items-center gap-2">
+                  ${SITE_CONFIG.showCategoryFilterBar ? categoryPills : ''}
+                </div>
+                ${SITE_CONFIG.showEssayCount ? `
+                  <div class="text-xs font-ui text-[var(--ink-muted)]">
+                    Showing ${filtered.length} ${filtered.length === 1 ? 'essay' : 'essays'}
+                  </div>
+                ` : ''}
+              </div>
+            ` : ''}
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div class="${hasSidebar ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-6">
+                ${listEssays.length === 0 ? `
+                  <div class="p-10 rounded-2xl bg-[var(--bg-card)] hairline-all text-center">
+                    <p class="font-display text-2xl font-bold text-[var(--ink-primary)]">No matching essays found</p>
+                    <p class="text-sm text-[var(--ink-secondary)] mt-2">Try clearing your search filter or exploring all categories.</p>
+                    <button onclick="state.selectedCategory='All'; state.searchQuery=''; const s=document.getElementById('search-input'); if(s) s.value=''; render();" class="mt-4 px-4 py-2 rounded-lg bg-[var(--accent-terracotta)] text-[#FAF6EE] font-ui text-xs font-medium">
+                      Reset Filters
+                    </button>
+                  </div>
+                ` : listEssays.map(essay => `
+                  <article class="group p-6 rounded-2xl bg-[var(--bg-card)] hairline-all hover:border-[var(--accent-terracotta)] transition shadow-2xs">
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-ui text-[var(--ink-muted)] mb-2">
+                      <div class="flex items-center gap-2">
+                        <span class="font-semibold text-[var(--accent-terracotta)]">${essay.number}</span>
+                        <span>•</span>
+                        <span class="uppercase tracking-wider font-medium">${essay.category}</span>
+                      </div>
+                      <span>${essay.date} • ${essay.readTime}</span>
+                    </div>
+
+                    <h3 onclick="navigateTo('essay', '${essay.id}')" class="cursor-pointer font-display text-2xl sm:text-3xl font-bold text-[var(--ink-primary)] group-hover:text-[var(--accent-terracotta)] transition leading-snug">
+                      ${essay.title}
+                    </h3>
+
+                    <p class="text-base text-[var(--ink-secondary)] mt-2 leading-relaxed">
+                      ${essay.subtitle}
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 hairline-t">
+                      <div class="flex flex-wrap gap-1.5">
+                        ${SITE_CONFIG.showCardTags ? essay.tags.slice(0, 3).map(tag => `
+                          <span class="px-2.5 py-0.5 rounded-md bg-[var(--bg-paper)] text-[11px] font-ui text-[var(--ink-muted)]">
+                            ${tag}
+                          </span>
+                        `).join('') : ''}
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        ${SITE_CONFIG.showCardSaveBtn ? `
+                          <button onclick="toggleBookmark('${essay.id}', event)" class="px-2.5 py-1 rounded-md hairline-all bg-[var(--bg-paper)] hover:border-[var(--accent-terracotta)] text-xs font-ui text-[var(--ink-secondary)] transition">
+                            ${isBookmarked(essay.id) ? '★ Saved' : '☆ Save'}
+                          </button>
+                        ` : ''}
+                        <button onclick="navigateTo('essay', '${essay.id}')" class="px-3.5 py-1 rounded-md bg-[var(--bg-paper-alt)] group-hover:bg-[var(--accent-terracotta)] text-[var(--ink-primary)] group-hover:text-[#FAF6EE] text-xs font-ui font-medium transition">
+                          Read Essay →
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                `).join('')}
+              </div>
+
+              ${hasSidebar ? `
+                <aside class="lg:col-span-4 space-y-6">
+                  ${SITE_CONFIG.showCommonplaceBook ? `
+                    <div class="p-6 rounded-2xl bg-[var(--bg-card)] hairline-all">
+                      <div class="flex items-center justify-between hairline-b pb-3 mb-4">
+                        <span class="font-ui text-xs uppercase tracking-widest font-semibold text-[var(--accent-terracotta)]">Commonplace Book</span>
+                        <button onclick="navigateTo('marginalia')" class="text-xs font-ui text-[var(--ink-muted)] hover:text-[var(--accent-terracotta)]">View all →</button>
+                      </div>
+
+                      <div class="space-y-5">
+                        ${MARGINALIA.slice(0, 4).map(item => `
+                          <div class="pb-4 hairline-b last:border-b-0 last:pb-0">
+                            <p class="italic text-sm sm:text-[15px] text-[var(--ink-primary)] leading-relaxed">
+                              “${item.quote}”
+                            </p>
+                            <div class="mt-2 flex items-center justify-between text-[11px] font-ui text-[var(--ink-muted)]">
+                              <span>— ${item.source}</span>
+                              ${item.essayId ? `<button onclick="navigateTo('essay', '${item.essayId}')" class="text-[var(--accent-terracotta)] hover:underline">Read</button>` : ''}
+                            </div>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+
+                  ${SITE_CONFIG.showInConversationWith ? `
+                    <div class="p-6 rounded-2xl bg-[var(--bg-paper-alt)]/75 hairline-all">
+                      <div class="font-ui text-xs uppercase tracking-widest font-semibold text-[var(--ink-primary)] mb-2">
+                        In Conversation With
+                      </div>
+                      <p class="text-xs text-[var(--ink-secondary)] leading-relaxed mb-3">
+                        Thinkers and traditions interrogated across <em>${SITE_CONFIG.title}</em>:
+                      </p>
+                      <div class="flex flex-wrap gap-1.5">
+                        ${thinkersArray.map(name => {
+                          const lastWord = name.split(' ').pop();
+                          return `
+                            <button onclick="const s=document.getElementById('search-input'); if(s) s.value='${lastWord}'; handleSearch('${lastWord}')" class="px-2.5 py-1 rounded-md bg-[var(--bg-card)] hairline-all hover:border-[var(--accent-terracotta)] text-xs font-serif-body text-[var(--ink-primary)] transition">
+                              ${name}
+                            </button>
+                          `;
+                        }).join('')}
+                      </div>
+                    </div>
+                  ` : ''}
+                </aside>
+              ` : ''}
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    // 2. FULL ESSAY READER VIEW
+    function renderEssayReader(essayId) {
+      const idx = ALL_ESSAYS.findIndex(e => e.id === essayId);
+      const essay = ALL_ESSAYS[idx] || ALL_ESSAYS[0];
+      const prevEssay = idx > 0 ? ALL_ESSAYS[idx - 1] : null;
+      const nextEssay = idx < ALL_ESSAYS.length - 1 ? ALL_ESSAYS[idx + 1] : null;
+      const initials = (SITE_CONFIG.authorDisplayName || 'NT')
+        .split(/\s+/)
+        .map(w => w[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+
+      return `
+        <div class="fade-in max-w-3xl mx-auto pt-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-8 hairline-b">
+            <button onclick="navigateTo('home')" class="inline-flex items-center gap-1.5 text-xs font-ui font-medium text-[var(--ink-secondary)] hover:text-[var(--accent-terracotta)] transition">
+              ← Back to All Essays
+            </button>
+
+            <div class="flex flex-wrap items-center gap-2">
+              ${SITE_CONFIG.showReaderFontControls ? `
+                <div class="inline-flex rounded-lg hairline-all overflow-hidden font-ui text-xs">
+                  <button onclick="setReaderFontSize('reader-sm')" data-size="reader-sm" class="font-size-btn px-2.5 py-1 transition ${state.readerFontSize === 'reader-sm' ? 'bg-[var(--ink-primary)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] text-[var(--ink-secondary)]'}">A-</button>
+                  <button onclick="setReaderFontSize('reader-md')" data-size="reader-md" class="font-size-btn px-2.5 py-1 transition ${state.readerFontSize === 'reader-md' ? 'bg-[var(--ink-primary)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] text-[var(--ink-secondary)]'}">A</button>
+                  <button onclick="setReaderFontSize('reader-lg')" data-size="reader-lg" class="font-size-btn px-2.5 py-1 transition ${state.readerFontSize === 'reader-lg' ? 'bg-[var(--ink-primary)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] text-[var(--ink-secondary)]'}">A+</button>
+                </div>
+              ` : ''}
+
+              ${SITE_CONFIG.showReaderSaveBtn ? `
+                <button onclick="toggleBookmark('${essay.id}', event)" class="px-3 py-1 rounded-lg hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-xs font-ui text-[var(--ink-secondary)] transition">
+                  ${isBookmarked(essay.id) ? '★ Saved' : '☆ Save'}
+                </button>
+              ` : ''}
+
+              ${SITE_CONFIG.showReaderCiteBtn ? `
+                <button onclick='copyCitation(${JSON.stringify({ title: essay.title, date: essay.date })})' class="px-3 py-1 rounded-lg hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-xs font-ui text-[var(--ink-secondary)] transition">
+                  Cite Essay
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <header class="mb-8">
+            <div class="flex items-center gap-2.5 text-xs font-ui uppercase tracking-widest text-[var(--accent-terracotta)] font-semibold mb-3">
+              <span>${essay.number}</span>
+              <span>•</span>
+              <span>${essay.category}</span>
+              <span>•</span>
+              <span>${essay.readTime}</span>
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-5xl font-bold text-[var(--ink-primary)] leading-[1.12]">
+              ${essay.title}
+            </h1>
+
+            <p class="text-lg sm:text-xl italic text-[var(--ink-secondary)] mt-3.5 leading-relaxed">
+              ${essay.subtitle}
+            </p>
+
+            <div class="mt-6 pt-4 hairline-t flex flex-wrap items-center justify-between gap-3 text-xs font-ui text-[var(--ink-muted)]">
+              <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-full bg-[var(--accent-terracotta)] text-[#FAF6EE] font-display font-bold flex items-center justify-center text-xs">${initials}</span>
+                <span>Written by <strong class="text-[var(--ink-primary)]">${SITE_CONFIG.authorDisplayName}</strong></span>
+              </div>
+              <span>Published ${essay.date} • ${SITE_CONFIG.locationBadge}</span>
+            </div>
+          </header>
+
+          <div id="essay-prose-body" class="essay-prose drop-cap ${state.readerFontSize}">
+            ${essay.content}
+          </div>
+
+          ${SITE_CONFIG.showReaderTags ? `
+            <div class="mt-12 pt-8 hairline-t">
+              <div class="flex flex-wrap gap-2">
+                ${essay.tags.map(t => `
+                  <span class="px-3 py-1 rounded-full bg-[var(--bg-paper-alt)] text-xs font-ui text-[var(--ink-secondary)]"># ${t}</span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          ${SITE_CONFIG.showReaderPrevNext ? `
+            <nav class="mt-10 pt-6 hairline-t grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${prevEssay ? `
+                <button onclick="navigateTo('essay', '${prevEssay.id}')" class="text-left p-4 rounded-xl bg-[var(--bg-card)] hairline-all hover:border-[var(--accent-terracotta)] transition">
+                  <div class="text-[11px] font-ui uppercase tracking-wider text-[var(--ink-muted)]">← Previous Essay</div>
+                  <div class="font-display text-lg font-bold text-[var(--ink-primary)] mt-1">${prevEssay.title}</div>
+                </button>
+              ` : '<div></div>'}
+
+              ${nextEssay ? `
+                <button onclick="navigateTo('essay', '${nextEssay.id}')" class="text-left sm:text-right p-4 rounded-xl bg-[var(--bg-card)] hairline-all hover:border-[var(--accent-terracotta)] transition">
+                  <div class="text-[11px] font-ui uppercase tracking-wider text-[var(--ink-muted)]">Next Essay →</div>
+                  <div class="font-display text-lg font-bold text-[var(--ink-primary)] mt-1">${nextEssay.title}</div>
+                </button>
+              ` : '<div></div>'}
+            </nav>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    // 3. ABOUT VIEW
+    function renderAboutManifesto() {
+      const introParagraphs = (SITE_CONFIG.aboutIntro || '').split(/\n\s*\n/).map(p => `<p>${p}</p>`).join('');
+      return `
+        <div class="fade-in max-w-3xl mx-auto pt-4">
+          <div class="text-center pb-8 mb-8 hairline-b">
+            <span class="font-ui text-xs uppercase tracking-[0.2em] text-[var(--accent-terracotta)] font-semibold">
+              Editorial Charter &amp; Author Note
+            </span>
+            <h1 class="font-display text-4xl sm:text-5xl font-bold text-[var(--ink-primary)] mt-2 leading-tight">
+              About ${SITE_CONFIG.title}
+            </h1>
+            <p class="italic text-lg text-[var(--ink-secondary)] mt-3">
+              An independent literary &amp; political journal edited and written by ${SITE_CONFIG.authorDisplayName}.
+            </p>
+          </div>
+
+          <div class="essay-prose drop-cap reader-md">
+            ${introParagraphs}
+
+            <h2>Editorial Purpose</h2>
+            <blockquote>
+              "${SITE_CONFIG.aboutQuote}"
+            </blockquote>
+
+            <h2>Themes &amp; Method</h2>
+            <ul>
+              <li><strong>Contextual Political Thought:</strong> Reading thinkers—from Plato, Hobbes, and Kautilya to Marx, Ambedkar, Gramsci, Foucault, and Hannah Arendt—within the historical battles that shaped their ideas.</li>
+              <li><strong>Democracy &amp; Power:</strong> Examining how institutions, cultural hegemony, and public memory sustain or undermine constitutional citizenship.</li>
+              <li><strong>Society &amp; Justice:</strong> Investigating the social, economic, and psychological structures beneath everyday norms.</li>
+              <li><strong>Reflections &amp; Dissent:</strong> Personal essays written from the quiet vantage point of an ordinary citizen striving to keep their conscience awake.</li>
+            </ul>
+
+            <h2>About the Author</h2>
+            <p>${SITE_CONFIG.authorBio}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // 4. ARCHIVE VIEW
+    function renderArchiveIndex() {
+      return `
+        <div class="fade-in max-w-4xl mx-auto pt-4">
+          <div class="pb-6 mb-8 hairline-b flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span class="font-ui text-xs uppercase tracking-[0.2em] text-[var(--accent-terracotta)] font-semibold">Complete Catalogue</span>
+              <h1 class="font-display text-4xl font-bold text-[var(--ink-primary)] mt-1">Index &amp; Reading Room</h1>
+            </div>
+            <p class="text-sm text-[var(--ink-muted)] font-ui">${ALL_ESSAYS.length} Complete Long-Form Essays</p>
+          </div>
+
+          <div class="divide-y divide-[var(--border-hairline)] bg-[var(--bg-card)] hairline-all rounded-2xl overflow-hidden">
+            ${ALL_ESSAYS.map(essay => `
+              <div class="p-5 sm:p-6 hover:bg-[var(--bg-paper-alt)]/50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="max-w-2xl">
+                  <div class="flex items-center gap-2.5 text-xs font-ui text-[var(--ink-muted)] mb-1">
+                    <span class="font-bold text-[var(--accent-terracotta)]">${essay.number}</span>
+                    <span>•</span>
+                    <span>${essay.category}</span>
+                    <span>•</span>
+                    <span>${essay.date}</span>
+                  </div>
+                  <h3 onclick="navigateTo('essay', '${essay.id}')" class="cursor-pointer font-display text-2xl font-bold text-[var(--ink-primary)] hover:text-[var(--accent-terracotta)] transition">
+                    ${essay.title}
+                  </h3>
+                  <p class="text-sm text-[var(--ink-secondary)] mt-1">${essay.subtitle}</p>
+                </div>
+
+                <div class="flex items-center gap-2 shrink-0">
+                  <span class="text-xs font-ui text-[var(--ink-muted)] mr-2">${essay.readTime}</span>
+                  <button onclick="toggleBookmark('${essay.id}', event)" class="px-3 py-1.5 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-secondary)]">
+                    ${isBookmarked(essay.id) ? '★' : '☆'}
+                  </button>
+                  <button onclick="navigateTo('essay', '${essay.id}')" class="px-4 py-1.5 rounded-lg bg-[var(--ink-primary)] hover:bg-[var(--accent-terracotta)] text-[#FAF6EE] text-xs font-ui font-medium transition">
+                    Open
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // 5. MARGINALIA VIEW
+    function renderMarginaliaView() {
+      return `
+        <div class="fade-in max-w-4xl mx-auto pt-4">
+          <div class="pb-6 mb-8 hairline-b">
+            <span class="font-ui text-xs uppercase tracking-[0.2em] text-[var(--accent-terracotta)] font-semibold">Excerpts &amp; Aphorisms</span>
+            <h1 class="font-display text-4xl font-bold text-[var(--ink-primary)] mt-1">Commonplace Book &amp; Marginalia</h1>
+            <p class="text-base text-[var(--ink-secondary)] mt-2">
+              Selected passages, propositions, and notes extracted from ${SITE_CONFIG.authorDisplayName}’s notebooks and essays.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            ${MARGINALIA.map(m => `
+              <div class="p-6 rounded-2xl bg-[var(--bg-card)] hairline-all flex flex-col justify-between">
+                <div>
+                  <span class="inline-block px-2.5 py-0.5 rounded-md bg-[var(--bg-paper-alt)] text-[11px] font-ui font-medium text-[var(--accent-terracotta)] mb-3">
+                    ${m.theme}
+                  </span>
+                  <blockquote class="font-serif-body italic text-lg text-[var(--ink-primary)] leading-relaxed">
+                    “${m.quote}”
+                  </blockquote>
+                </div>
+
+                <div class="mt-5 pt-3 hairline-t flex items-center justify-between text-xs font-ui text-[var(--ink-muted)]">
+                  <span>— ${m.source}</span>
+                  ${m.essayId
+                    ? `<button onclick="navigateTo('essay', '${m.essayId}')" class="text-[var(--accent-terracotta)] font-medium hover:underline">Read Essay →</button>`
+                    : `<button onclick="navigateTo('about')" class="text-[var(--accent-terracotta)] font-medium hover:underline">Editorial Charter →</button>`
+                  }
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // 6. SAVED READING LIST VIEW
+    function renderBookmarksView() {
+      const saved = ALL_ESSAYS.filter(e => state.bookmarks.includes(e.id));
+      return `
+        <div class="fade-in max-w-3xl mx-auto pt-4">
+          <div class="pb-6 mb-8 hairline-b">
+            <span class="font-ui text-xs uppercase tracking-[0.2em] text-[var(--accent-terracotta)] font-semibold">Personal Desk</span>
+            <h1 class="font-display text-4xl font-bold text-[var(--ink-primary)] mt-1">Your Saved Reading List</h1>
+            <p class="text-sm text-[var(--ink-secondary)] mt-2">
+              Essays bookmarked locally in your browser for quiet, unhurried reading.
+            </p>
+          </div>
+
+          ${saved.length === 0 ? `
+            <div class="p-10 rounded-2xl bg-[var(--bg-card)] hairline-all text-center">
+              <p class="font-display text-2xl font-bold text-[var(--ink-primary)]">Your reading desk is empty</p>
+              <p class="text-sm text-[var(--ink-secondary)] mt-2">Click “Save” on any essay to keep it here for later reflection.</p>
+              <button onclick="navigateTo('home')" class="mt-5 px-5 py-2 rounded-lg bg-[var(--accent-terracotta)] text-[#FAF6EE] font-ui text-xs font-medium">
+                Browse Essays
+              </button>
+            </div>
+          ` : `
+            <div class="space-y-4">
+              ${saved.map(essay => `
+                <div class="p-6 rounded-2xl bg-[var(--bg-card)] hairline-all flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div class="text-xs font-ui text-[var(--accent-terracotta)] font-semibold">${essay.category} • ${essay.readTime}</div>
+                    <h3 onclick="navigateTo('essay', '${essay.id}')" class="cursor-pointer font-display text-2xl font-bold text-[var(--ink-primary)] hover:text-[var(--accent-terracotta)] mt-1">
+                      ${essay.title}
+                    </h3>
+                    <p class="text-sm text-[var(--ink-secondary)] mt-1">${essay.subtitle}</p>
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="toggleBookmark('${essay.id}', event)" class="px-3 py-1.5 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-muted)] hover:text-[var(--accent-terracotta)]">
+                      Remove
+                    </button>
+                    <button onclick="navigateTo('essay', '${essay.id}')" class="px-4 py-1.5 rounded-lg bg-[var(--ink-primary)] text-[#FAF6EE] text-xs font-ui font-medium">
+                      Read →
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    // 7. AUTHOR DESK VIEW
+    function renderAuthorDeskView() {
+      if (!state.isAuthorUnlocked) {
+        return `
+          <div class="fade-in max-w-md mx-auto pt-10 text-center">
+            <div class="p-8 rounded-2xl bg-[var(--bg-card)] hairline-all">
+              <h2 class="font-display text-3xl font-bold text-[var(--ink-primary)]">Author Desk Locked</h2>
+              <p class="text-sm text-[var(--ink-secondary)] mt-2">Enter your passphrase to open this workspace.</p>
+              <button onclick="openAuthorLoginModal()" class="mt-4 px-5 py-2.5 rounded-lg bg-[var(--accent-terracotta)] text-[#FAF6EE] font-ui text-xs font-medium">
+                Enter Passphrase
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      const customEssays = ALL_ESSAYS.filter(e => e.isCustom);
+
+      return `
+        <div class="fade-in max-w-4xl mx-auto pt-4 space-y-6">
+          <div class="pb-6 hairline-b flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="font-ui text-xs uppercase tracking-[0.2em] text-[var(--accent-terracotta)] font-semibold">Publishing &amp; Site Studio</span>
+              <h1 class="font-display text-4xl font-bold text-[var(--ink-primary)] mt-1">Author Desk</h1>
+              <p class="text-sm text-[var(--ink-secondary)] mt-1">Write essays and toggle or edit every element across the site.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="lockAuthorDeskNow()" class="px-3.5 py-2.5 rounded-xl hairline-all bg-[var(--bg-card)] hover:border-[var(--accent-terracotta)] text-[var(--ink-secondary)] font-ui text-xs font-medium transition">
+                🔒 Lock Desk
+              </button>
+              <button onclick="downloadUpdatedWebsiteHTML()" class="px-4 py-2.5 rounded-xl bg-[var(--ink-primary)] hover:bg-[var(--accent-terracotta)] text-[#FAF6EE] font-ui text-xs font-medium transition shadow-xs">
+                ⬇ Download Updated index.html
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button onclick="switchAuthorTab('write')" class="px-4 py-2 rounded-lg font-ui text-xs font-semibold transition ${state.authorTab === 'write' ? 'bg-[var(--accent-terracotta)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] hairline-all text-[var(--ink-secondary)]'}">
+              1. Write Essay
+            </button>
+            <button onclick="switchAuthorTab('customize')" class="px-4 py-2 rounded-lg font-ui text-xs font-semibold transition ${state.authorTab === 'customize' ? 'bg-[var(--accent-terracotta)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] hairline-all text-[var(--ink-secondary)]'}">
+              2. Every Element Switch &amp; Text
+            </button>
+            <button onclick="switchAuthorTab('manage')" class="px-4 py-2 rounded-lg font-ui text-xs font-semibold transition ${state.authorTab === 'manage' ? 'bg-[var(--accent-terracotta)] text-[#FAF6EE]' : 'bg-[var(--bg-card)] hairline-all text-[var(--ink-secondary)]'}">
+              3. Drafts &amp; Passphrase (${customEssays.length})
+            </button>
+          </div>
+
+          ${state.authorTab === 'write' ? `
+            <form onsubmit="publishNewEssayFromGUI(event)" class="p-6 sm:p-8 rounded-2xl bg-[var(--bg-card)] hairline-all space-y-5">
+              <h2 class="font-display text-2xl font-bold text-[var(--ink-primary)]">Write a New Essay</h2>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Essay Title *</label>
+                  <input type="text" id="gui-title" required placeholder="e.g. On Civic Courage in Quiet Times" class="w-full px-3.5 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Category</label>
+                  <select id="gui-category" class="w-full px-3.5 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]">
+                    <option value="Political Philosophy">Political Philosophy</option>
+                    <option value="Contemporary Politics">Contemporary Politics</option>
+                    <option value="Reflections & Dissent">Reflections &amp; Dissent</option>
+                    <option value="Society & Justice">Society &amp; Justice</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Subtitle / Summary</label>
+                <input type="text" id="gui-subtitle" placeholder="A one-sentence summary shown on the front page..." class="w-full px-3.5 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Highlighted Pull-Quote (Optional)</label>
+                  <input type="text" id="gui-quote" placeholder="A memorable line from your essay..." class="w-full px-3.5 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]" />
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Tags (comma separated)</label>
+                  <input type="text" id="gui-tags" placeholder="e.g. Gramsci, Democracy, History" class="w-full px-3.5 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-ui text-sm focus:outline-none focus:border-[var(--accent-terracotta)]" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">
+                  Essay Body * <span class="font-normal text-[var(--ink-muted)]">(Blank line between paragraphs. Start a line with <code>## </code> for heading, <code>### </code> for subheading, or <code>&gt; </code> for quote.)</span>
+                </label>
+                <textarea id="gui-body" rows="12" required placeholder="Write or paste your essay here..." class="w-full p-4 rounded-xl hairline-all bg-[var(--bg-paper)] text-[var(--ink-primary)] font-serif-body text-base leading-relaxed focus:outline-none focus:border-[var(--accent-terracotta)]"></textarea>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <p class="text-xs font-ui text-[var(--ink-muted)]">
+                  Publish, then click <strong>Download Updated index.html</strong> above to save permanently.
+                </p>
+                <button type="submit" class="px-6 py-2.5 rounded-lg bg-[var(--accent-terracotta)] hover:bg-[var(--accent-terracotta-hover)] text-[#FAF6EE] font-ui text-xs font-semibold transition shadow-xs">
+                  Publish Essay
+                </button>
+              </div>
+            </form>
+          ` : ''}
+
+          ${state.authorTab === 'customize' ? `
+            <form onsubmit="saveSiteCustomizerGUI(event)" class="p-6 sm:p-8 rounded-2xl bg-[var(--bg-card)] hairline-all space-y-7">
+              <div class="flex items-center justify-between hairline-b pb-4">
+                <div>
+                  <h2 class="font-display text-2xl font-bold text-[var(--ink-primary)]">Complete Element &amp; Section Customizer</h2>
+                  <p class="text-xs font-ui text-[var(--ink-muted)] mt-0.5">Toggle every element on or off and edit any text block across the website.</p>
+                </div>
+                <button type="button" onclick="resetSiteCustomizerToDefault()" class="text-xs font-ui text-[var(--accent-terracotta)] hover:underline">
+                  Reset Defaults
+                </button>
+              </div>
+
+              <div class="space-y-3">
+                <h3 class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--accent-terracotta)]">1. Top Utility Bar &amp; Masthead Switches</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Top Utility Bar</span>
+                    <input type="checkbox" id="cfg-show-top-bar" ${SITE_CONFIG.showTopUtilityBar ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Location Badge</span>
+                    <input type="checkbox" id="cfg-show-location" ${SITE_CONFIG.showLocationBadge ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Top Motto Quote</span>
+                    <input type="checkbox" id="cfg-show-motto" ${SITE_CONFIG.showTopMotto ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Paper Tone Toggle</span>
+                    <input type="checkbox" id="cfg-show-paper-toggle" ${SITE_CONFIG.showPaperToggle ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Reading List Button</span>
+                    <input type="checkbox" id="cfg-show-reading-list" ${SITE_CONFIG.showReadingListBtn ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Masthead Kicker Line</span>
+                    <input type="checkbox" id="cfg-show-kicker" ${SITE_CONFIG.showMastheadKicker ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Masthead Tagline</span>
+                    <input type="checkbox" id="cfg-show-subtitle" ${SITE_CONFIG.showMastheadSubtitle ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Double &amp; Hairline Rules</span>
+                    <input type="checkbox" id="cfg-show-rules" ${SITE_CONFIG.showMastheadRules ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Navigation Bar</span>
+                    <input type="checkbox" id="cfg-show-nav" ${SITE_CONFIG.showNavBar ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Search Input Box</span>
+                    <input type="checkbox" id="cfg-show-search" ${SITE_CONFIG.showSearchBox ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-4 hairline-t">
+                <h3 class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--accent-terracotta)]">2. Homepage, Essay Cards &amp; Sidebar Switches</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Category Filter Pills</span>
+                    <input type="checkbox" id="cfg-show-cat-bar" ${SITE_CONFIG.showCategoryFilterBar ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Essay Count Label</span>
+                    <input type="checkbox" id="cfg-show-essay-count" ${SITE_CONFIG.showEssayCount ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Lead Pull-Quote Box</span>
+                    <input type="checkbox" id="cfg-show-lead-quote" ${SITE_CONFIG.showLeadPullQuote ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Lead Save Button</span>
+                    <input type="checkbox" id="cfg-show-lead-save" ${SITE_CONFIG.showLeadSaveBtn ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Essay Card Tags</span>
+                    <input type="checkbox" id="cfg-show-card-tags" ${SITE_CONFIG.showCardTags ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Essay Card Save Button</span>
+                    <input type="checkbox" id="cfg-show-card-save" ${SITE_CONFIG.showCardSaveBtn ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Editor’s Dispatch Card</span>
+                    <input type="checkbox" id="cfg-show-dispatch" ${SITE_CONFIG.showEditorsDispatch ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Commonplace Book Panel</span>
+                    <input type="checkbox" id="cfg-show-commonplace" ${SITE_CONFIG.showCommonplaceBook ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">In Conversation With Box</span>
+                    <input type="checkbox" id="cfg-show-thinkers" ${SITE_CONFIG.showInConversationWith ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-4 hairline-t">
+                <h3 class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--accent-terracotta)]">3. Essay Reader &amp; Footer Switches</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Reader Font Size (A-/A/A+)</span>
+                    <input type="checkbox" id="cfg-show-reader-font" ${SITE_CONFIG.showReaderFontControls ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Reader Save Button</span>
+                    <input type="checkbox" id="cfg-show-reader-save" ${SITE_CONFIG.showReaderSaveBtn ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Reader Cite Button</span>
+                    <input type="checkbox" id="cfg-show-reader-cite" ${SITE_CONFIG.showReaderCiteBtn ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Reader Bottom Tags</span>
+                    <input type="checkbox" id="cfg-show-reader-tags" ${SITE_CONFIG.showReaderTags ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Prev / Next Essay Nav</span>
+                    <input type="checkbox" id="cfg-show-reader-prevnext" ${SITE_CONFIG.showReaderPrevNext ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Entire Footer</span>
+                    <input type="checkbox" id="cfg-show-footer" ${SITE_CONFIG.showFooter ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Footer Brand Column</span>
+                    <input type="checkbox" id="cfg-show-footer-brand" ${SITE_CONFIG.showFooterBrandCol ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Footer Epigraph Quote</span>
+                    <input type="checkbox" id="cfg-show-footer-epigraph" ${SITE_CONFIG.showFooterEpigraph ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Footer Sections Column</span>
+                    <input type="checkbox" id="cfg-show-footer-sections" ${SITE_CONFIG.showFooterSectionsCol ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                  <label class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-paper)] hairline-all cursor-pointer">
+                    <span class="text-xs font-ui font-medium text-[var(--ink-primary)]">Footer Copyright Line</span>
+                    <input type="checkbox" id="cfg-show-footer-copy" ${SITE_CONFIG.showFooterCopyright ? 'checked' : ''} class="w-4 h-4 accent-[#7D3524]" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="space-y-4 pt-4 hairline-t">
+                <h3 class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--accent-terracotta)]">4. Masthead, Author &amp; Top Bar Text</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Publication Title</label>
+                    <input type="text" id="cfg-title" value="${escapeHtmlAttr(SITE_CONFIG.title)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Location Badge</label>
+                    <input type="text" id="cfg-location" value="${escapeHtmlAttr(SITE_CONFIG.locationBadge)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Top Motto Quote</label>
+                    <input type="text" id="cfg-motto" value="${escapeHtmlAttr(SITE_CONFIG.motto)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Kicker Left (Est.)</label>
+                    <input type="text" id="cfg-masthead-est" value="${escapeHtmlAttr(SITE_CONFIG.mastheadEst)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Kicker Center Byline</label>
+                    <input type="text" id="cfg-masthead-byline" value="${escapeHtmlAttr(SITE_CONFIG.mastheadByline)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Kicker Right Label</label>
+                    <input type="text" id="cfg-masthead-format" value="${escapeHtmlAttr(SITE_CONFIG.mastheadFormat)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Author Name</label>
+                    <input type="text" id="cfg-author-name" value="${escapeHtmlAttr(SITE_CONFIG.authorDisplayName)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Author Credentials Line</label>
+                    <input type="text" id="cfg-author-creds" value="${escapeHtmlAttr(SITE_CONFIG.authorCredentials)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Masthead Tagline</label>
+                  <input type="text" id="cfg-subtitle" value="${escapeHtmlAttr(SITE_CONFIG.subtitle)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                </div>
+              </div>
+
+              <div class="space-y-4 pt-4 hairline-t">
+                <h3 class="font-ui text-xs uppercase tracking-wider font-semibold text-[var(--accent-terracotta)]">5. Sidebar, About Page &amp; Footer Text</h3>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Editor’s Dispatch Heading</label>
+                  <input type="text" id="cfg-dispatch-title" value="${escapeHtmlAttr(SITE_CONFIG.editorsDispatchTitle)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Editor’s Dispatch Body</label>
+                  <textarea id="cfg-dispatch-text" rows="3" class="w-full p-3 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]">${escapeHtmlAttr(SITE_CONFIG.editorsDispatchText)}</textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Thinkers List (comma separated)</label>
+                  <input type="text" id="cfg-thinkers-list" value="${escapeHtmlAttr(SITE_CONFIG.thinkersList)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">About Page Introduction</label>
+                  <textarea id="cfg-about-intro" rows="3" class="w-full p-3 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]">${escapeHtmlAttr(SITE_CONFIG.aboutIntro)}</textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">About Page Blockquote</label>
+                  <textarea id="cfg-about-quote" rows="2" class="w-full p-3 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]">${escapeHtmlAttr(SITE_CONFIG.aboutQuote)}</textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Short Author Bio</label>
+                  <textarea id="cfg-author-bio" rows="2" class="w-full p-3 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]">${escapeHtmlAttr(SITE_CONFIG.authorBio)}</textarea>
+                </div>
+                <div>
+                  <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Footer Description</label>
+                  <textarea id="cfg-footer-desc" rows="2" class="w-full p-3 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]">${escapeHtmlAttr(SITE_CONFIG.footerDesc)}</textarea>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Footer Epigraph</label>
+                    <input type="text" id="cfg-footer-epigraph" value="${escapeHtmlAttr(SITE_CONFIG.footerEpigraph)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-ui font-semibold text-[var(--ink-secondary)] mb-1">Footer Copyright</label>
+                    <input type="text" id="cfg-footer-copy-text" value="${escapeHtmlAttr(SITE_CONFIG.footerCopyright)}" class="w-full px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button type="submit" class="px-6 py-2.5 rounded-lg bg-[var(--accent-terracotta)] hover:bg-[var(--accent-terracotta-hover)] text-[#FAF6EE] font-ui text-xs font-semibold transition shadow-xs">
+                  Save All Changes
+                </button>
+              </div>
+            </form>
+          ` : ''}
+
+          ${state.authorTab === 'manage' ? `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="p-6 rounded-2xl bg-[var(--bg-card)] hairline-all">
+                <h3 class="font-display text-xl font-bold text-[var(--ink-primary)] mb-2">Added Essays (${customEssays.length})</h3>
+                ${customEssays.length === 0 ? `
+                  <p class="text-xs font-ui text-[var(--ink-muted)]">Essays added in Tab 1 appear here for deletion.</p>
+                ` : `
+                  <ul class="space-y-2 mt-3">
+                    ${customEssays.map(ce => `
+                      <li class="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-[var(--bg-paper)] text-xs font-ui">
+                        <span class="font-medium text-[var(--ink-primary)] truncate">${ce.title}</span>
+                        <button onclick="deleteCustomEssay('${ce.id}')" class="text-[var(--accent-terracotta)] hover:underline shrink-0">Delete</button>
+                      </li>
+                    `).join('')}
+                  </ul>
+                `}
+              </div>
+
+              <div class="p-6 rounded-2xl bg-[var(--bg-card)] hairline-all">
+                <h3 class="font-display text-xl font-bold text-[var(--ink-primary)] mb-2">Change Passphrase</h3>
+                <form onsubmit="updateAuthorPassphrase(event)" class="flex gap-2 mt-3">
+                  <input type="password" id="new-passphrase-input" required autocomplete="off" placeholder="New passphrase (min 6 chars)..." class="flex-1 px-3 py-2 rounded-lg hairline-all bg-[var(--bg-paper)] text-xs font-ui text-[var(--ink-primary)]" />
+                  <button type="submit" class="px-4 py-2 rounded-lg bg-[var(--ink-primary)] text-[#FAF6EE] text-xs font-ui font-medium">Update</button>
+                </form>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
